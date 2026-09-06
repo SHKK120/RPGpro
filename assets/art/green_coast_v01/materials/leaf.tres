@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/art/green_coast_v01/textures/leaf_pixel.png" id="1_cgr2a"]
+
+[resource]
+resource_name = "leaf"
+albedo_color = Color(0.62, 0.72, 0.52, 1)
+albedo_texture = ExtResource("1_cgr2a")
+roughness = 0.96
+uv1_scale = Vector3(2.5, 2.5, 2.5)
+texture_filter = 2

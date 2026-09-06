@@ -19,6 +19,24 @@ const KNOWN_PICKUP_IDS := [
 	"stone_gc_01", "stone_gc_02", "stone_gc_03", "souvenir_green_coast",
 ]
 
+const ART_STONE_MATERIAL := preload("res://assets/art/green_coast_v01/materials/stone.tres")
+const ART_CLIFF_MATERIAL := preload("res://assets/art/green_coast_v01/materials/cliff_stone.tres")
+const ART_WOOD_MATERIAL := preload("res://assets/art/green_coast_v01/materials/wood.tres")
+const ART_LEAF_MATERIAL := preload("res://assets/art/green_coast_v01/materials/leaf.tres")
+const ART_SOIL_MATERIAL := preload("res://assets/art/green_coast_v01/materials/soil.tres")
+const ART_RUIN_MATERIAL := preload("res://assets/art/green_coast_v01/materials/ruin.tres")
+const ART_ACCENT_MATERIAL := preload("res://assets/art/green_coast_v01/materials/accent.tres")
+const ART_SHORE_MATERIAL := preload("res://assets/art/green_coast_v01/materials/shore.tres")
+const ART_CLIFF_SCENE := preload("res://scenes/art/green_coast_v01/cliff_chunk.tscn")
+const ART_TREE_SCENE := preload("res://scenes/art/green_coast_v01/tree.tscn")
+const ART_SHRUB_SCENE := preload("res://scenes/art/green_coast_v01/shrub_cluster.tscn")
+const ART_FENCE_SCENE := preload("res://scenes/art/green_coast_v01/fence_section.tscn")
+const ART_RUBBLE_SCENE := preload("res://scenes/art/green_coast_v01/ruin_rubble.tscn")
+const ART_BENCH_SCENE := preload("res://scenes/art/green_coast_v01/bench.tscn")
+const ART_DISPLAY_SCENE := preload("res://scenes/art/green_coast_v01/display_pedestal.tscn")
+const ART_WOOD_PICKUP_SCENE := preload("res://scenes/art/green_coast_v01/wood_pickup.tscn")
+const ART_STONE_PICKUP_SCENE := preload("res://scenes/art/green_coast_v01/stone_pickup.tscn")
+
 @export var save_path_override := ""
 
 var _flow_mode := FlowMode.START
@@ -35,17 +53,16 @@ var _bench_visual: Node3D
 var _display_visual: Node3D
 var _toast_timer: Timer
 
-var _ground_material: StandardMaterial3D
 var _path_material: StandardMaterial3D
 var _wood_material: StandardMaterial3D
-var _leaf_material: StandardMaterial3D
 var _stone_material: StandardMaterial3D
+var _cliff_material: StandardMaterial3D
 var _ruin_material: StandardMaterial3D
 var _hut_material: StandardMaterial3D
 var _roof_material: StandardMaterial3D
 var _slot_material: StandardMaterial3D
 var _souvenir_material: StandardMaterial3D
-var _bench_material: StandardMaterial3D
+var _beach_material: StandardMaterial3D
 
 
 func _ready() -> void:
@@ -651,12 +668,12 @@ func _build_green_coast() -> void:
 	_add_static_box(region, "BoundaryEast", Vector3(14.85, 0.75, 0), Vector3(0.3, 3, 23.4), null)
 	_add_static_box(region, "BoundarySouth", Vector3(0, 0.75, 11.85), Vector3(29.4, 3, 0.3), null)
 	_add_static_box(region, "BoundaryNorth", Vector3(0, 0.75, -11.85), Vector3(29.4, 3, 0.3), null)
-	_add_visual_box(world, "FenceWest", Vector3(-14.85, 0.58, 0), Vector3(0.3, 1.15, 23.4), _wood_material)
-	_add_visual_box(world, "FenceEast", Vector3(14.85, 0.58, 0), Vector3(0.3, 1.15, 23.4), _wood_material)
-	_add_visual_box(world, "FenceSouth", Vector3(0, 0.58, 11.85), Vector3(29.4, 1.15, 0.3), _wood_material)
+	_add_fence_visuals(world)
 
 	_add_static_box(region, "Hut", Vector3(6.5, 1.4, 8.9), Vector3(5.2, 2.8, 3.2), _hut_material)
-	_add_visual_box(world, "HutRoof", Vector3(6.5, 3.15, 8.9), Vector3(6.0, 0.55, 4.0), _roof_material, deg_to_rad(45.0), Vector3(0, 0, 1))
+	_add_visual_box(world, "HutRoofNorth", Vector3(6.5, 3.15, 9.78), Vector3(6.0, 0.22, 2.2), _roof_material, deg_to_rad(28.0), Vector3(1, 0, 0))
+	_add_visual_box(world, "HutRoofSouth", Vector3(6.5, 3.15, 8.02), Vector3(6.0, 0.22, 2.2), _roof_material, deg_to_rad(-28.0), Vector3(1, 0, 0))
+	_add_visual_box(world, "HutRoofRidge", Vector3(6.5, 3.66, 8.9), Vector3(6.08, 0.16, 0.18), _wood_material)
 	_add_visual_box(world, "HutDoor", Vector3(6.5, 1.05, 7.27), Vector3(1.15, 2.1, 0.08), _wood_material)
 
 	for tree_data in [
@@ -670,15 +687,33 @@ func _build_green_coast() -> void:
 	_add_static_box(region, "RuinLeft", Vector3(5.7, 0.85, -2.9), Vector3(0.45, 1.7, 3.4), _ruin_material)
 	_add_static_box(region, "RuinRight", Vector3(11.3, 1.25, -3.2), Vector3(0.45, 2.5, 2.8), _ruin_material)
 	_add_visual_box(world, "RuinArch", Vector3(8.5, 2.5, -2.6), Vector3(3.1, 0.45, 0.45), _ruin_material)
+	_instantiate_art_scene(ART_RUBBLE_SCENE, world, "RuinRubbleEast", Vector3(9.8, 0.04, -4.05), -18.0, 0.85)
+	_instantiate_art_scene(ART_RUBBLE_SCENE, world, "RuinRubbleWest", Vector3(6.45, 0.04, -4.18), 24.0, 0.62)
 
 	_add_rock_obstacle(region, "CoastRockLeft", Vector3(-4.3, 0, -8.0), 1.6, Vector3(2.5, 1.55, 2.0), -18.0)
 	_add_rock_obstacle(region, "CoastRockRight", Vector3(4.8, 0, -7.2), 1.35, Vector3(2.1, 1.35, 1.8), 28.0)
 	_add_rock_obstacle(region, "ForestRock", Vector3(-5.2, 0, -0.7), 1.0, Vector3(1.6, 1.0, 1.3), 12.0)
+	_add_far_island_base(world, "FarIslandShelf", Vector3(-3.0, -1.66, -29), 5.8, 0.58)
 	_add_far_rock(world, "FarIsland", Vector3(-3.0, -1.2, -29), 6.4, 24.0)
+	_add_far_island_base(world, "FarRockShelf", Vector3(11.5, -1.64, -34), 3.5, 0.52)
 	_add_far_rock(world, "FarRock", Vector3(11.5, -1.2, -34), 3.8, -38.0)
+	_add_far_island_base(world, "HorizonShelf", Vector3(-18.0, -1.78, -45), 5.2, 0.38)
+	_add_far_rock(world, "HorizonRock", Vector3(-18.0, -1.3, -44.5), 4.4, 12.0)
 
-	_add_visual_box(world, "CliffFace", Vector3(0, -0.9, -12.5), Vector3(31, 1.8, 1.6), _stone_material)
-	_add_visual_box(world, "Beach", Vector3(0, -1.2, -15.0), Vector3(32, 0.25, 4.0), _slot_material)
+	_add_visual_box(world, "CliffFace", Vector3(0, -0.9, -12.5), Vector3(31, 1.8, 1.6), _cliff_material)
+	for cliff_x in [-12.5, -7.5, -2.5, 2.5, 7.5, 12.5]:
+		_instantiate_art_scene(ART_CLIFF_SCENE, world, "CliffChunk_%s" % str(cliff_x), Vector3(cliff_x, -0.32, -12.08), 0.0, 1.0)
+	_add_visual_box(world, "Beach", Vector3(0, -1.2, -15.0), Vector3(32, 0.25, 4.0), _beach_material)
+
+	for shrub_data in [
+		["ShrubForestNorth", Vector3(-13.0, 0.02, 5.9), 12.0, 1.0],
+		["ShrubForestWest", Vector3(-13.1, 0.02, -5.0), -18.0, 0.9],
+		["ShrubForestPath", Vector3(-4.5, 0.02, 4.4), 24.0, 0.8],
+		["ShrubHome", Vector3(3.8, 0.02, 5.0), -12.0, 0.72],
+		["ShrubRuin", Vector3(12.65, 0.02, 0.2), 35.0, 0.82],
+		["ShrubCoast", Vector3(8.9, 0.02, -8.8), -28.0, 0.68],
+	]:
+		_instantiate_art_scene(ART_SHRUB_SCENE, world, shrub_data[0], shrub_data[1], shrub_data[2], shrub_data[3])
 
 	_interactables = Node3D.new()
 	_interactables.name = "Interactables"
@@ -702,17 +737,19 @@ func _build_green_coast() -> void:
 
 
 func _prepare_materials() -> void:
-	_ground_material = _make_material(Color(0.25, 0.43, 0.24))
-	_path_material = _make_material(Color(0.54, 0.44, 0.31))
-	_wood_material = _make_material(Color(0.34, 0.20, 0.10))
-	_leaf_material = _make_material(Color(0.16, 0.42, 0.19))
-	_stone_material = _make_material(Color(0.38, 0.40, 0.39))
-	_ruin_material = _make_material(Color(0.56, 0.50, 0.39))
-	_hut_material = _make_material(Color(0.48, 0.30, 0.16))
-	_roof_material = _make_material(Color(0.20, 0.30, 0.22))
-	_slot_material = _make_material(Color(0.74, 0.61, 0.38))
-	_souvenir_material = _make_material(Color(0.20, 0.85, 0.92), Color(0.08, 0.58, 0.72))
-	_bench_material = _make_material(Color(0.62, 0.38, 0.16))
+	_path_material = ART_SOIL_MATERIAL
+	_wood_material = ART_WOOD_MATERIAL
+	_stone_material = ART_STONE_MATERIAL
+	_cliff_material = ART_CLIFF_MATERIAL
+	_ruin_material = ART_RUIN_MATERIAL
+	_hut_material = ART_WOOD_MATERIAL
+	_roof_material = ART_LEAF_MATERIAL
+	_slot_material = ART_ACCENT_MATERIAL
+	_beach_material = ART_SHORE_MATERIAL
+	_souvenir_material = ART_ACCENT_MATERIAL.duplicate() as StandardMaterial3D
+	_souvenir_material.albedo_color = Color(0.30, 0.72, 0.72)
+	_souvenir_material.emission = Color(0.05, 0.28, 0.30)
+	_souvenir_material.emission_energy_multiplier = 0.9
 
 
 func _make_material(color: Color, emission := Color(0, 0, 0, 0)) -> StandardMaterial3D:
@@ -774,6 +811,24 @@ func _add_visual_box(parent: Node3D, node_name: String, position: Vector3, size:
 	return visual
 
 
+func _instantiate_art_scene(scene: PackedScene, parent: Node3D, node_name: String, position: Vector3, yaw_degrees := 0.0, scale_value := 1.0) -> Node3D:
+	var visual := scene.instantiate() as Node3D
+	visual.name = node_name
+	visual.position = position
+	visual.rotation_degrees.y = yaw_degrees
+	visual.scale = Vector3.ONE * scale_value
+	parent.add_child(visual)
+	return visual
+
+
+func _add_fence_visuals(parent: Node3D) -> void:
+	for z in [-9.3, -4.65, 0.0, 4.65, 9.3]:
+		_instantiate_art_scene(ART_FENCE_SCENE, parent, "FenceWest_%s" % str(z), Vector3(-14.72, 0, z), 90.0)
+		_instantiate_art_scene(ART_FENCE_SCENE, parent, "FenceEast_%s" % str(z), Vector3(14.72, 0, z), 90.0)
+	for x in [-11.7, -7.0, -2.35, 2.35, 7.0, 11.7]:
+		_instantiate_art_scene(ART_FENCE_SCENE, parent, "FenceSouth_%s" % str(x), Vector3(x, 0, 11.72), 0.0)
+
+
 func _add_tree(parent: Node3D, node_name: String, position: Vector3) -> void:
 	var body := StaticBody3D.new()
 	body.name = node_name
@@ -786,25 +841,7 @@ func _add_tree(parent: Node3D, node_name: String, position: Vector3) -> void:
 	collision.shape = shape
 	collision.position.y = 1.1
 	body.add_child(collision)
-	var trunk_mesh := CylinderMesh.new()
-	trunk_mesh.top_radius = 0.32
-	trunk_mesh.bottom_radius = 0.45
-	trunk_mesh.height = 2.2
-	trunk_mesh.material = _wood_material
-	var trunk := MeshInstance3D.new()
-	trunk.mesh = trunk_mesh
-	trunk.position.y = 1.1
-	body.add_child(trunk)
-	var crown_mesh := SphereMesh.new()
-	crown_mesh.radius = 1.15
-	crown_mesh.height = 2.0
-	crown_mesh.radial_segments = 8
-	crown_mesh.rings = 4
-	crown_mesh.material = _leaf_material
-	var crown := MeshInstance3D.new()
-	crown.mesh = crown_mesh
-	crown.position.y = 2.65
-	body.add_child(crown)
+	_instantiate_art_scene(ART_TREE_SCENE, body, "Visual", Vector3.ZERO)
 
 
 func _add_rock_obstacle(parent: Node3D, node_name: String, position: Vector3, scale_value: float, collision_size: Vector3, yaw_degrees: float) -> void:
@@ -824,6 +861,7 @@ func _add_rock_obstacle(parent: Node3D, node_name: String, position: Vector3, sc
 	rock.name = "Visual"
 	rock.scale = Vector3.ONE * scale_value
 	body.add_child(rock)
+	_apply_material_override(rock, _stone_material)
 
 
 func _add_far_rock(parent: Node3D, node_name: String, position: Vector3, scale_value: float, yaw_degrees: float) -> void:
@@ -834,9 +872,32 @@ func _add_far_rock(parent: Node3D, node_name: String, position: Vector3, scale_v
 	rock.rotation_degrees.y = yaw_degrees
 	rock.scale = Vector3.ONE * scale_value
 	parent.add_child(rock)
+	_apply_material_override(rock, _stone_material)
 
 
-func _add_pickup(node_name: String, kind: String, pickup_id: String, position: Vector3, material: Material) -> void:
+func _add_far_island_base(parent: Node3D, node_name: String, position: Vector3, radius: float, depth_scale: float) -> void:
+	var mesh := CylinderMesh.new()
+	mesh.top_radius = 1.0
+	mesh.bottom_radius = 1.16
+	mesh.height = 0.82
+	mesh.radial_segments = 8
+	mesh.material = _ruin_material
+	var visual := MeshInstance3D.new()
+	visual.name = node_name
+	visual.position = position
+	visual.scale = Vector3(radius, 1.0, radius * depth_scale)
+	visual.mesh = mesh
+	parent.add_child(visual)
+
+
+func _apply_material_override(parent: Node, material: Material) -> void:
+	if parent is MeshInstance3D:
+		(parent as MeshInstance3D).material_override = material
+	for child in parent.get_children():
+		_apply_material_override(child, material)
+
+
+func _add_pickup(node_name: String, kind: String, pickup_id: String, position: Vector3, _material: Material) -> void:
 	var pickup := Node3D.new()
 	pickup.name = node_name
 	pickup.position = position
@@ -845,24 +906,8 @@ func _add_pickup(node_name: String, kind: String, pickup_id: String, position: V
 	pickup.set_meta("amount", 1)
 	pickup.set_meta("active", true)
 	_interactables.add_child(pickup)
-	var mesh: PrimitiveMesh
-	if kind == "wood":
-		var log_mesh := CylinderMesh.new()
-		log_mesh.top_radius = 0.18
-		log_mesh.bottom_radius = 0.22
-		log_mesh.height = 0.9
-		log_mesh.radial_segments = 8
-		mesh = log_mesh
-	else:
-		var rock_mesh := BoxMesh.new()
-		rock_mesh.size = Vector3(0.55, 0.4, 0.48)
-		mesh = rock_mesh
-	mesh.material = material
-	var visual := MeshInstance3D.new()
-	visual.mesh = mesh
-	if kind == "wood":
-		visual.rotation_degrees.z = 90.0
-	pickup.add_child(visual)
+	var visual_scene: PackedScene = ART_WOOD_PICKUP_SCENE if kind == "wood" else ART_STONE_PICKUP_SCENE
+	_instantiate_art_scene(visual_scene, pickup, "Visual", Vector3.ZERO)
 	_add_pickup_ring(pickup)
 
 
@@ -918,21 +963,11 @@ func _add_pickup_ring(parent: Node3D) -> void:
 
 
 func _make_bench(parent: Node3D, position: Vector3) -> Node3D:
-	var bench := Node3D.new()
-	bench.position = position
-	parent.add_child(bench)
-	_add_visual_box(bench, "Seat", Vector3(0, 0.72, 0), Vector3(2.4, 0.25, 0.75), _bench_material)
-	_add_visual_box(bench, "Back", Vector3(0, 1.25, 0.32), Vector3(2.4, 0.85, 0.18), _bench_material)
-	_add_visual_box(bench, "LegLeft", Vector3(-0.85, 0.35, 0), Vector3(0.2, 0.7, 0.55), _wood_material)
-	_add_visual_box(bench, "LegRight", Vector3(0.85, 0.35, 0), Vector3(0.2, 0.7, 0.55), _wood_material)
-	return bench
+	return _instantiate_art_scene(ART_BENCH_SCENE, parent, "BenchVisual", position)
 
 
 func _make_display(parent: Node3D, position: Vector3) -> Node3D:
-	var display := Node3D.new()
-	display.position = position
-	parent.add_child(display)
-	_add_visual_box(display, "Plinth", Vector3(0, 0.45, 0), Vector3(0.9, 0.9, 0.9), _ruin_material)
+	var display := _instantiate_art_scene(ART_DISPLAY_SCENE, parent, "DisplayVisual", position)
 	var mesh := CylinderMesh.new()
 	mesh.top_radius = 0.10
 	mesh.bottom_radius = 0.34

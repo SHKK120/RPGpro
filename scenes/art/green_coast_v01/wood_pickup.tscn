@@ -1,0 +1,41 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_v01/materials/wood.tres" id="1_ssuem"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_g8ty8"]
+material = ExtResource("1_ssuem")
+top_radius = 0.17
+bottom_radius = 0.2
+height = 0.82
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_d67qu"]
+material = ExtResource("1_ssuem")
+top_radius = 0.15
+bottom_radius = 0.18
+height = 0.72
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8liyf"]
+material = ExtResource("1_ssuem")
+top_radius = 0.14
+bottom_radius = 0.17
+height = 0.68
+radial_segments = 6
+rings = 1
+
+[node name="WoodPickupVisual" type="Node3D" unique_id=1200879243]
+
+[node name="LogA" type="MeshInstance3D" parent="." unique_id=93584443]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_g8ty8")
+
+[node name="LogB" type="MeshInstance3D" parent="." unique_id=541892798]
+transform = Transform3D(0.12189469, -0.8999972, 0.41850537, 0.98785585, 0.06907764, -0.1391731, 0.09634604, 0.43038744, 0.89748764, 0.02, 0.17, 0.18)
+mesh = SubResource("CylinderMesh_d67qu")
+
+[node name="LogC" type="MeshInstance3D" parent="." unique_id=1295377035]
+transform = Transform3D(-0.034119964, -0.95099306, -0.30732417, 0.99209934, -0.069374345, 0.104528464, -0.12072626, -0.30132958, 0.94584656, -0.04, 0.15, -0.18)
+mesh = SubResource("CylinderMesh_8liyf")

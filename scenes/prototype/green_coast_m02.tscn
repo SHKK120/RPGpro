@@ -1,33 +1,31 @@
-[gd_scene load_steps=21 format=3]
+[gd_scene load_steps=20 format=3]
 
-[ext_resource type="Script" path="res://scripts/prototype/p1_player.gd" id="1_player"]
+[ext_resource type="Script" path="res://scripts/prototype/m03_player.gd" id="1_player"]
 [ext_resource type="NavigationMesh" path="res://scenes/prototype/m02_navigation_mesh.tres" id="2_navmesh"]
 [ext_resource type="Script" path="res://scripts/prototype/p1_camera_follow.gd" id="3_camera"]
-[ext_resource type="Script" path="res://scripts/prototype/m02_green_coast.gd" id="4_m02"]
+[ext_resource type="Script" path="res://scripts/prototype/macro_01_game.gd" id="4_m02"]
+[ext_resource type="Material" path="res://assets/art/green_coast_v01/materials/ground.tres" id="5_art_ground"]
+[ext_resource type="Material" path="res://assets/art/green_coast_v01/materials/water.tres" id="6_art_water"]
 
 [sub_resource type="Environment" id="Environment_green_coast"]
 background_mode = 1
-background_color = Color(0.33, 0.54, 0.74, 1)
+background_color = Color(0.30, 0.47, 0.64, 1)
 ambient_light_source = 3
-ambient_light_color = Color(0.64, 0.73, 0.81, 1)
-ambient_light_energy = 0.72
-
-[sub_resource type="StandardMaterial3D" id="Material_ground"]
-albedo_color = Color(0.25, 0.43, 0.24, 1)
-roughness = 0.95
+ambient_light_color = Color(0.66, 0.75, 0.82, 1)
+ambient_light_energy = 0.82
 
 [sub_resource type="StandardMaterial3D" id="Material_player"]
-albedo_color = Color(0.93, 0.62, 0.19, 1)
+albedo_color = Color(0.28, 0.43, 0.48, 1)
 roughness = 0.65
 
 [sub_resource type="StandardMaterial3D" id="Material_destination"]
-albedo_color = Color(0.2, 1, 0.58, 1)
+albedo_color = Color(0.32, 0.82, 0.62, 1)
 emission_enabled = true
-emission = Color(0.08, 0.68, 0.3, 1)
-emission_energy_multiplier = 1.4
+emission = Color(0.05, 0.32, 0.22, 1)
+emission_energy_multiplier = 0.75
 
 [sub_resource type="BoxMesh" id="Mesh_floor"]
-material = SubResource("Material_ground")
+material = ExtResource("5_art_ground")
 size = Vector3(30, 0.5, 24)
 
 [sub_resource type="BoxShape3D" id="Shape_floor"]
@@ -48,14 +46,8 @@ top_radius = 0.32
 bottom_radius = 0.32
 height = 0.04
 
-[sub_resource type="Shader" id="Shader_sea"]
-code = "shader_type spatial;\nrender_mode cull_disabled;\n\nuniform vec3 deep_color : source_color = vec3(0.035, 0.22, 0.34);\nuniform vec3 crest_color : source_color = vec3(0.12, 0.48, 0.58);\n\nvoid vertex() {\n\tfloat wave_a = sin(VERTEX.x * 0.32 + TIME * 0.72);\n\tfloat wave_b = cos(VERTEX.z * 0.38 + TIME * 0.55);\n\tVERTEX.y += (wave_a + wave_b) * 0.075;\n}\n\nvoid fragment() {\n\tfloat band = clamp(NORMAL.y * 0.55 + 0.35, 0.0, 1.0);\n\tALBEDO = mix(deep_color, crest_color, band);\n\tROUGHNESS = 0.42;\n\tMETALLIC = 0.05;\n}\n"
-
-[sub_resource type="ShaderMaterial" id="Material_sea"]
-shader = SubResource("Shader_sea")
-
 [sub_resource type="PlaneMesh" id="Mesh_sea"]
-material = SubResource("Material_sea")
+material = ExtResource("6_art_water")
 size = Vector2(82, 54)
 subdivide_width = 48
 subdivide_depth = 32
@@ -130,8 +122,9 @@ environment = SubResource("Environment_green_coast")
 [node name="Sun" type="DirectionalLight3D" parent="."]
 rotation_degrees = Vector3(-48, -28, 0)
 light_color = Color(1, 0.83, 0.62, 1)
-light_energy = 1.35
+light_energy = 1.08
 shadow_enabled = true
+shadow_opacity = 0.72
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = ExtResource("2_navmesh")
@@ -207,8 +200,8 @@ mouse_filter = 2
 [node name="Stats" type="PanelContainer" parent="UI/HUD"]
 offset_left = 22.0
 offset_top = 20.0
-offset_right = 590.0
-offset_bottom = 100.0
+offset_right = 760.0
+offset_bottom = 108.0
 theme_override_styles/panel = SubResource("Style_dark")
 
 [node name="VBox" type="VBoxContainer" parent="UI/HUD/Stats"]
@@ -216,26 +209,26 @@ theme_override_constants/separation = 5
 
 [node name="ResourceLabel" type="Label" parent="UI/HUD/Stats/VBox"]
 theme_override_colors/font_color = Color(0.92, 1, 0.86, 1)
-theme_override_font_sizes/font_size = 20
-text = "목재 0   돌 0   기념품 미발견"
+theme_override_font_sizes/font_size = 17
+text = "HP 100 / 100   Core 0   Blade +0   |   목재 0  돌 0  기념품 미발견"
 
 [node name="ObjectiveLabel" type="Label" parent="UI/HUD/Stats/VBox"]
 theme_override_colors/font_color = Color(0.82, 0.9, 1, 1)
-theme_override_font_sizes/font_size = 17
+theme_override_font_sizes/font_size = 16
 text = "현재 목표: 왼쪽 작은 숲으로 이동"
 
 [node name="PauseHint" type="Label" parent="UI/HUD"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -245.0
+offset_left = -365.0
 offset_top = 24.0
 offset_right = -22.0
 offset_bottom = 53.0
 grow_horizontal = 0
 theme_override_colors/font_color = Color(0.92, 0.96, 1, 0.9)
 theme_override_font_sizes/font_size = 17
-text = "WASD·우클릭 이동  |  Esc 메뉴"
+text = "8방향 조준·좌클릭 공격 · Space 회피 · Shift 달리기\nWASD/우클릭 이동 · E 상호작용 · Esc 메뉴"
 horizontal_alignment = 2
 
 [node name="InteractionPrompt" type="PanelContainer" parent="UI"]
@@ -335,7 +328,7 @@ horizontal_alignment = 1
 [node name="Subtitle" type="Label" parent="UI/StartMenu/Panel/VBox"]
 theme_override_colors/font_color = Color(0.78, 0.88, 0.94, 1)
 theme_override_font_sizes/font_size = 17
-text = "첫 탐험·귀환 루프 시험"
+text = "첫 탐험·전투·성장 루프 시험"
 horizontal_alignment = 1
 
 [node name="Spacer" type="Control" parent="UI/StartMenu/Panel/VBox"]

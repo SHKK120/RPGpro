@@ -1,0 +1,30 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_v01/materials/stone.tres" id="1_aiol1"]
+[ext_resource type="Material" path="res://assets/art/green_coast_v01/materials/cliff_stone.tres" id="2_qvwy5"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_134qi"]
+material = ExtResource("1_aiol1")
+size = Vector3(1.05, 0.24, 1.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gevxj"]
+material = ExtResource("1_aiol1")
+size = Vector3(0.72, 0.68, 0.72)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8s1v1"]
+material = ExtResource("2_qvwy5")
+size = Vector3(0.95, 0.16, 0.95)
+
+[node name="DisplayPedestal" type="Node3D" unique_id=120163846]
+
+[node name="Base" type="MeshInstance3D" parent="." unique_id=1087972481]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+mesh = SubResource("BoxMesh_134qi")
+
+[node name="Body" type="MeshInstance3D" parent="." unique_id=1544128246]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52, 0)
+mesh = SubResource("BoxMesh_gevxj")
+
+[node name="Top" type="MeshInstance3D" parent="." unique_id=1461244507]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.91, 0)
+mesh = SubResource("BoxMesh_8s1v1")

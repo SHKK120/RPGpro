@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @export var move_speed: float = 4.0
+@export var sprint_multiplier: float = 1.65
 @export var destination_snap_tolerance: float = 0.75
 @export var arrival_distance: float = 0.35
 @export var stuck_timeout: float = 1.5
@@ -92,8 +93,11 @@ func _physics_process(delta: float) -> void:
 		if _automatic_move:
 			move_direction = _automatic_move_direction()
 
-	velocity.x = move_direction.x * move_speed
-	velocity.z = move_direction.z * move_speed
+	var active_move_speed := move_speed
+	if Input.is_action_pressed("sprint") and move_direction.length_squared() > 0.0001:
+		active_move_speed *= maxf(sprint_multiplier, 1.0)
+	velocity.x = move_direction.x * active_move_speed
+	velocity.z = move_direction.z * active_move_speed
 
 	if is_on_floor():
 		if velocity.y < 0.0:

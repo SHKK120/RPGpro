@@ -1,0 +1,29 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_v01/materials/cliff_stone.tres" id="1_is88b"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yhu63"]
+material = ExtResource("1_is88b")
+size = Vector3(4.9, 0.65, 1.35)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8eaqd"]
+material = ExtResource("1_is88b")
+size = Vector3(4.65, 0.55, 1.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_aqsiv"]
+material = ExtResource("1_is88b")
+size = Vector3(4.75, 0.42, 0.85)
+
+[node name="CliffChunk" type="Node3D" unique_id=727217933]
+
+[node name="LowerLayer" type="MeshInstance3D" parent="." unique_id=761590197]
+transform = Transform3D(0.99939084, 0, 0.034899496, 0, 1, 0, -0.034899496, 0, 0.99939084, 0, -0.72, 0)
+mesh = SubResource("BoxMesh_yhu63")
+
+[node name="MiddleLayer" type="MeshInstance3D" parent="." unique_id=949160455]
+transform = Transform3D(0.99939084, 0, -0.034899496, 0, 1, 0, 0.034899496, 0, 0.99939084, -0.12, -0.18, -0.08)
+mesh = SubResource("BoxMesh_8eaqd")
+
+[node name="TopLayer" type="MeshInstance3D" parent="." unique_id=1500013655]
+transform = Transform3D(0.9998477, 0, 0.017452406, 0, 1, 0, -0.017452406, 0, 0.9998477, 0.08, 0.27, 0.02)
+mesh = SubResource("BoxMesh_aqsiv")

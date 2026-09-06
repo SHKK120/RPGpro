@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "M05 Character Outer Cloth"
+albedo_color = Color(0.68, 0.45, 0.24, 1)
+roughness = 0.88
+texture_filter = 2
+

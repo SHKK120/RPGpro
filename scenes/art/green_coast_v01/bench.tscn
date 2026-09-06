@@ -1,0 +1,45 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_v01/materials/wood.tres" id="1_q7p5o"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_moll2"]
+material = ExtResource("1_q7p5o")
+size = Vector3(2.4, 0.24, 0.72)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ex862"]
+material = ExtResource("1_q7p5o")
+size = Vector3(2.4, 0.72, 0.18)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w6n7r"]
+material = ExtResource("1_q7p5o")
+size = Vector3(0.22, 0.7, 0.52)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rs5bc"]
+material = ExtResource("1_q7p5o")
+size = Vector3(0.22, 0.7, 0.52)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qf5sh"]
+material = ExtResource("1_q7p5o")
+size = Vector3(1.8, 0.16, 0.18)
+
+[node name="BenchVisual" type="Node3D" unique_id=493303155]
+
+[node name="Seat" type="MeshInstance3D" parent="." unique_id=1598791222]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.72, 0)
+mesh = SubResource("BoxMesh_moll2")
+
+[node name="Back" type="MeshInstance3D" parent="." unique_id=2016134859]
+transform = Transform3D(1, 0, 0, 0, 0.9975641, 0.06975647, 0, -0.06975647, 0.9975641, 0, 1.25, 0.31)
+mesh = SubResource("BoxMesh_ex862")
+
+[node name="LegLeft" type="MeshInstance3D" parent="." unique_id=1540390856]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.86, 0.35, 0)
+mesh = SubResource("BoxMesh_w6n7r")
+
+[node name="LegRight" type="MeshInstance3D" parent="." unique_id=1870546391]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.86, 0.35, 0)
+mesh = SubResource("BoxMesh_rs5bc")
+
+[node name="Brace" type="MeshInstance3D" parent="." unique_id=1168397348]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32, 0)
+mesh = SubResource("BoxMesh_qf5sh")

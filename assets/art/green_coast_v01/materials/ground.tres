@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/art/green_coast_v01/textures/soil_pixel.png" id="1_yxhud"]
+
+[resource]
+resource_name = "ground"
+albedo_color = Color(0.47, 0.55, 0.39, 1)
+albedo_texture = ExtResource("1_yxhud")
+roughness = 0.99
+uv1_scale = Vector3(4, 4, 4)
+texture_filter = 2

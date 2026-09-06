@@ -1,0 +1,42 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_v01/materials/wood.tres" id="1_sg72e"]
+[ext_resource type="Material" path="res://assets/art/green_coast_v01/materials/leaf.tres" id="2_krktg"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_w6oek"]
+material = ExtResource("1_sg72e")
+top_radius = 0.34
+bottom_radius = 0.48
+height = 2.1
+radial_segments = 6
+rings = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_4yjkw"]
+material = ExtResource("2_krktg")
+size = Vector3(2, 1.15, 1.75)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yc77p"]
+material = ExtResource("2_krktg")
+size = Vector3(1.55, 1, 1.45)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cghn2"]
+material = ExtResource("2_krktg")
+size = Vector3(1, 0.85, 1.05)
+
+[node name="TreeVisual" type="Node3D" unique_id=749265600]
+
+[node name="Trunk" type="MeshInstance3D" parent="." unique_id=1367064281]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
+mesh = SubResource("CylinderMesh_w6oek")
+
+[node name="CrownLow" type="MeshInstance3D" parent="." unique_id=1235148519]
+transform = Transform3D(0.9727892, -0.10224427, 0.2079117, 0.104528464, 0.9945219, 0, -0.20677274, 0.02173269, 0.9781476, 0, 2.35, 0)
+mesh = SubResource("BoxMesh_4yjkw")
+
+[node name="CrownHigh" type="MeshInstance3D" parent="." unique_id=999390260]
+transform = Transform3D(0.9576038, 0.08377947, -0.27563736, -0.08715574, 0.9961947, 0, 0.2745885, 0.024023376, 0.9612617, -0.18, 3.05, 0.05)
+mesh = SubResource("BoxMesh_yc77p")
+
+[node name="CrownSide" type="MeshInstance3D" parent="." unique_id=425389311]
+transform = Transform3D(0.87207705, -0.13812344, 0.46947157, 0.15643448, 0.98768836, 0, -0.46369162, 0.07344154, 0.88294756, 0.58, 2.68, -0.2)
+mesh = SubResource("BoxMesh_cghn2")

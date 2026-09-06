@@ -1,0 +1,29 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_v01/materials/leaf.tres" id="1_3cv0g"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7fvuu"]
+material = ExtResource("1_3cv0g")
+size = Vector3(0.8, 0.62, 0.72)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0ybxf"]
+material = ExtResource("1_3cv0g")
+size = Vector3(0.95, 0.78, 0.82)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pumsg"]
+material = ExtResource("1_3cv0g")
+size = Vector3(0.62, 0.52, 0.7)
+
+[node name="ShrubCluster" type="Node3D" unique_id=290937395]
+
+[node name="LeafA" type="MeshInstance3D" parent="." unique_id=1471417931]
+transform = Transform3D(0.9305476, -0.13077994, 0.34202012, 0.1391731, 0.99026805, 0, -0.3386916, 0.0476, 0.9396926, -0.42, 0.32, 0)
+mesh = SubResource("BoxMesh_7fvuu")
+
+[node name="LeafB" type="MeshInstance3D" parent="." unique_id=990885833]
+transform = Transform3D(0.9630633, 0.118249305, -0.2419219, -0.12186935, 0.99254614, 0, 0.24011865, 0.029482864, 0.9702957, 0.18, 0.42, -0.08)
+mesh = SubResource("BoxMesh_0ybxf")
+
+[node name="LeafC" type="MeshInstance3D" parent="." unique_id=1641946785]
+transform = Transform3D(0.8434024, -0.08864517, 0.52991927, 0.104528464, 0.9945219, 0, -0.52701634, 0.055391647, 0.8480481, 0.67, 0.27, 0.15)
+mesh = SubResource("BoxMesh_pumsg")

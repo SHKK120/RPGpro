@@ -1,0 +1,30 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_v01/materials/stone.tres" id="1_3ytdy"]
+[ext_resource type="Material" path="res://assets/art/green_coast_v01/materials/cliff_stone.tres" id="2_j5bxo"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_n33vo"]
+material = ExtResource("1_3ytdy")
+size = Vector3(0.46, 0.34, 0.42)
+
+[sub_resource type="BoxMesh" id="BoxMesh_45xyf"]
+material = ExtResource("1_3ytdy")
+size = Vector3(0.38, 0.42, 0.36)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r1iwu"]
+material = ExtResource("2_j5bxo")
+size = Vector3(0.32, 0.28, 0.3)
+
+[node name="StonePickupVisual" type="Node3D" unique_id=1204815127]
+
+[node name="StoneA" type="MeshInstance3D" parent="." unique_id=1191106718]
+transform = Transform3D(0.93921536, -0.15566874, 0.30600965, 0.20588832, 0.96862835, -0.1391731, -0.27474475, 0.19371732, 0.9418009, -0.2, 0, 0)
+mesh = SubResource("BoxMesh_n33vo")
+
+[node name="StoneB" type="MeshInstance3D" parent="." unique_id=1857629965]
+transform = Transform3D(0.9272137, -0.06462237, -0.36891547, 0.13705875, 0.97522366, 0.17364818, 0.34855354, -0.21157205, 0.91309786, 0.23, 0.04, 0.08)
+mesh = SubResource("BoxMesh_45xyf")
+
+[node name="StoneC" type="MeshInstance3D" parent="." unique_id=654461165]
+transform = Transform3D(0.7985129, 0.21819389, 0.5610424, -0.11920621, 0.97085667, -0.2079117, -0.5900568, 0.09914044, 0.80125165, 0.05, -0.03, -0.28)
+mesh = SubResource("BoxMesh_r1iwu")
