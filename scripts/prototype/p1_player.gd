@@ -13,14 +13,17 @@ var _movement_camera: Camera3D
 var _navigation_agent: NavigationAgent3D
 var _movement_floor: StaticBody3D
 var _destination_marker: MeshInstance3D
+var _movement_floor_height := NAN
 var _automatic_move := false
 var _destination := Vector3.ZERO
-var _pending_click_position := Vector2.ZERO
+var _pending_ray_origin := Vector3.ZERO
+var _pending_ray_direction := Vector3.ZERO
 var _has_pending_click := false
 var _last_progress_position := Vector3.ZERO
 var _stuck_elapsed := 0.0
 
 const DIRECT_MOVE_ACTIONS := [&"move_left", &"move_right", &"move_forward", &"move_back"]
+const CLICK_RAY_LENGTH := 1000.0
 
 
 func _ready() -> void:
@@ -35,6 +38,8 @@ func _ready() -> void:
 		push_error("P1-2 click movement requires a NavigationAgent3D; click movement is disabled.")
 	if _movement_floor == null:
 		push_error("P1-2 click movement requires the explicit movement floor; click movement is disabled.")
+	else:
+		_resolve_movement_floor_height()
 	if _destination_marker == null:
 		push_error("P1-2 click movement requires a destination marker; click movement is disabled.")
 	else:
@@ -44,13 +49,16 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_action_pressed("move_to_point"):
 		return
-	if _has_direct_move_key_pressed() or not _navigation_is_ready():
+	if _has_direct_move_key_pressed() or _movement_camera == null or not _navigation_is_ready():
 		return
 
 	var mouse_event := event as InputEventMouseButton
 	if mouse_event == null:
 		return
-	_pending_click_position = mouse_event.position
+	if not get_viewport().get_visible_rect().has_point(mouse_event.position):
+		return
+	_pending_ray_origin = _movement_camera.project_ray_origin(mouse_event.position)
+	_pending_ray_direction = _movement_camera.project_ray_normal(mouse_event.position)
 	_has_pending_click = true
 
 
@@ -120,50 +128,115 @@ func _consume_pending_click() -> void:
 	_has_pending_click = false
 	if _movement_camera == null or _movement_floor == null or _navigation_agent == null or _destination_marker == null:
 		return
-	if not _navigation_is_ready():
+	if not _navigation_is_ready() or not is_finite(_movement_floor_height):
 		return
 
-	var ray_origin := _movement_camera.project_ray_origin(_pending_click_position)
-	var ray_end := ray_origin + _movement_camera.project_ray_normal(_pending_click_position) * 1000.0
+	var ray_origin := _pending_ray_origin
+	var ray_direction := _pending_ray_direction
+	if not _is_finite_vector(ray_origin) or not _is_finite_vector(ray_direction) or ray_direction.length_squared() <= 0.000001:
+		return
+	ray_direction = ray_direction.normalized()
+	var ray_end := ray_origin + ray_direction * CLICK_RAY_LENGTH
 	var query := PhysicsRayQueryParameters3D.create(ray_origin, ray_end, 1, [get_rid()])
 	var hit := get_world_3d().direct_space_state.intersect_ray(query)
-	if hit.is_empty() or hit.get("collider") != _movement_floor:
+	var intent_position: Variant = null
+
+	if hit.is_empty():
+		intent_position = _intersect_movement_plane(ray_origin, ray_direction)
+	else:
+		var collider := hit.get("collider") as CollisionObject3D
+		if collider == _movement_floor:
+			var hit_normal: Vector3 = hit["normal"]
+			if hit_normal.dot(Vector3.UP) < 0.9:
+				return
+			intent_position = hit["position"]
+		elif _is_supported_click_obstacle(collider):
+			var hit_position: Vector3 = hit["position"]
+			intent_position = Vector3(hit_position.x, _movement_floor_height, hit_position.z)
+		else:
+			return
+
+	if intent_position == null:
 		return
-
-	var hit_normal: Vector3 = hit["normal"]
-	if hit_normal.dot(Vector3.UP) < 0.9:
-		return
-	_try_accept_destination(hit["position"])
+	_try_accept_destination(intent_position, true)
 
 
-func _try_accept_destination(clicked_position: Vector3) -> void:
+func _try_accept_destination(clicked_position: Vector3, allow_distant_snap := false) -> bool:
 	var navigation_map := _navigation_agent.get_navigation_map()
 	var navigation_target := NavigationServer3D.map_get_closest_point(navigation_map, clicked_position)
-	if _horizontal_distance(clicked_position, navigation_target) > destination_snap_tolerance:
-		return
-
-	if _horizontal_distance(global_position, navigation_target) <= arrival_distance:
-		_finish_click_movement()
-		return
+	if not _is_finite_vector(navigation_target):
+		return false
+	if not allow_distant_snap and _horizontal_distance(clicked_position, navigation_target) > destination_snap_tolerance:
+		return false
 
 	var navigation_start := NavigationServer3D.map_get_closest_point(navigation_map, global_position)
-	var proposed_path := NavigationServer3D.map_get_path(navigation_map, navigation_start, navigation_target, true)
+	var proposed_path := NavigationServer3D.map_get_path(
+		navigation_map,
+		navigation_start,
+		navigation_target,
+		true,
+		_navigation_agent.navigation_layers,
+	)
 	if proposed_path.is_empty():
-		return
-	if _horizontal_distance(proposed_path[proposed_path.size() - 1], navigation_target) > destination_snap_tolerance:
-		return
+		return false
+	var reachable_target: Vector3 = proposed_path[proposed_path.size() - 1]
+	if not _is_finite_vector(reachable_target):
+		return false
+	if not allow_distant_snap and _horizontal_distance(reachable_target, navigation_target) > destination_snap_tolerance:
+		return false
 
-	_destination = navigation_target
-	_navigation_agent.target_position = navigation_target
+	if _horizontal_distance(global_position, reachable_target) <= arrival_distance:
+		_finish_click_movement()
+		return true
+
+	_destination = reachable_target
+	_navigation_agent.target_position = reachable_target
 	_automatic_move = true
 	_last_progress_position = global_position
 	_stuck_elapsed = 0.0
 	_destination_marker.global_position = Vector3(
-		navigation_target.x,
-		clicked_position.y + 0.04,
-		navigation_target.z,
+		reachable_target.x,
+		_movement_floor_height + 0.04,
+		reachable_target.z,
 	)
 	_destination_marker.visible = true
+	return true
+
+
+func _resolve_movement_floor_height() -> void:
+	var floor_collision := _movement_floor.get_node_or_null("CollisionShape3D") as CollisionShape3D
+	if floor_collision == null:
+		push_error("P1-4 destination correction requires the movement floor CollisionShape3D.")
+		return
+	var floor_box := floor_collision.shape as BoxShape3D
+	if floor_box == null:
+		push_error("P1-4 destination correction requires the current box-shaped movement floor.")
+		return
+	var floor_top := floor_collision.global_transform * Vector3(0.0, floor_box.size.y * 0.5, 0.0)
+	_movement_floor_height = floor_top.y
+
+
+func _is_supported_click_obstacle(collider: CollisionObject3D) -> bool:
+	if collider == null or collider == _movement_floor:
+		return false
+	return collider is StaticBody3D and collider.get_parent() == _movement_floor.get_parent()
+
+
+func _intersect_movement_plane(ray_origin: Vector3, ray_direction: Vector3) -> Variant:
+	var plane_hit: Variant = Plane(Vector3.UP, _movement_floor_height).intersects_ray(ray_origin, ray_direction)
+	if plane_hit == null:
+		return null
+	var intersection: Vector3 = plane_hit
+	var ray_offset := intersection - ray_origin
+	if not _is_finite_vector(intersection) or ray_offset.dot(ray_direction) <= 0.0:
+		return null
+	if ray_offset.length() > CLICK_RAY_LENGTH:
+		return null
+	return intersection
+
+
+func _is_finite_vector(value: Vector3) -> bool:
+	return is_finite(value.x) and is_finite(value.y) and is_finite(value.z)
 
 
 func _automatic_move_direction() -> Vector3:

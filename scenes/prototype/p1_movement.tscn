@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3]
+[gd_scene load_steps=22 format=3]
 
 [ext_resource type="Script" path="res://scripts/prototype/p1_player.gd" id="1_player"]
 [ext_resource type="NavigationMesh" path="res://scenes/prototype/p1_navigation_mesh.tres" id="2_navmesh"]
+[ext_resource type="Script" path="res://scripts/prototype/p1_camera_follow.gd" id="3_camera_follow"]
 
 [sub_resource type="Environment" id="Environment_p1"]
 background_mode = 1
@@ -190,3 +191,5 @@ mesh = SubResource("Mesh_destination")
 position = Vector3(0, 8, 12)
 rotation_degrees = Vector3(-30, 0, 0)
 current = true
+script = ExtResource("3_camera_follow")
+target_path = NodePath("../Player")
