@@ -1,0 +1,445 @@
+[gd_scene load_steps=21 format=3]
+
+[ext_resource type="Script" path="res://scripts/prototype/p1_player.gd" id="1_player"]
+[ext_resource type="NavigationMesh" path="res://scenes/prototype/m02_navigation_mesh.tres" id="2_navmesh"]
+[ext_resource type="Script" path="res://scripts/prototype/p1_camera_follow.gd" id="3_camera"]
+[ext_resource type="Script" path="res://scripts/prototype/m02_green_coast.gd" id="4_m02"]
+
+[sub_resource type="Environment" id="Environment_green_coast"]
+background_mode = 1
+background_color = Color(0.33, 0.54, 0.74, 1)
+ambient_light_source = 3
+ambient_light_color = Color(0.64, 0.73, 0.81, 1)
+ambient_light_energy = 0.72
+
+[sub_resource type="StandardMaterial3D" id="Material_ground"]
+albedo_color = Color(0.25, 0.43, 0.24, 1)
+roughness = 0.95
+
+[sub_resource type="StandardMaterial3D" id="Material_player"]
+albedo_color = Color(0.93, 0.62, 0.19, 1)
+roughness = 0.65
+
+[sub_resource type="StandardMaterial3D" id="Material_destination"]
+albedo_color = Color(0.2, 1, 0.58, 1)
+emission_enabled = true
+emission = Color(0.08, 0.68, 0.3, 1)
+emission_energy_multiplier = 1.4
+
+[sub_resource type="BoxMesh" id="Mesh_floor"]
+material = SubResource("Material_ground")
+size = Vector3(30, 0.5, 24)
+
+[sub_resource type="BoxShape3D" id="Shape_floor"]
+size = Vector3(30, 0.5, 24)
+
+[sub_resource type="CapsuleMesh" id="Mesh_player"]
+material = SubResource("Material_player")
+radius = 0.55
+height = 2.0
+
+[sub_resource type="CapsuleShape3D" id="Shape_player"]
+radius = 0.55
+height = 2.0
+
+[sub_resource type="CylinderMesh" id="Mesh_destination"]
+material = SubResource("Material_destination")
+top_radius = 0.32
+bottom_radius = 0.32
+height = 0.04
+
+[sub_resource type="Shader" id="Shader_sea"]
+code = "shader_type spatial;\nrender_mode cull_disabled;\n\nuniform vec3 deep_color : source_color = vec3(0.035, 0.22, 0.34);\nuniform vec3 crest_color : source_color = vec3(0.12, 0.48, 0.58);\n\nvoid vertex() {\n\tfloat wave_a = sin(VERTEX.x * 0.32 + TIME * 0.72);\n\tfloat wave_b = cos(VERTEX.z * 0.38 + TIME * 0.55);\n\tVERTEX.y += (wave_a + wave_b) * 0.075;\n}\n\nvoid fragment() {\n\tfloat band = clamp(NORMAL.y * 0.55 + 0.35, 0.0, 1.0);\n\tALBEDO = mix(deep_color, crest_color, band);\n\tROUGHNESS = 0.42;\n\tMETALLIC = 0.05;\n}\n"
+
+[sub_resource type="ShaderMaterial" id="Material_sea"]
+shader = SubResource("Shader_sea")
+
+[sub_resource type="PlaneMesh" id="Mesh_sea"]
+material = SubResource("Material_sea")
+size = Vector2(82, 54)
+subdivide_width = 48
+subdivide_depth = 32
+
+[sub_resource type="StyleBoxFlat" id="Style_dark"]
+bg_color = Color(0.035, 0.055, 0.075, 0.88)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+content_margin_left = 16.0
+content_margin_top = 11.0
+content_margin_right = 16.0
+content_margin_bottom = 11.0
+
+[sub_resource type="StyleBoxFlat" id="Style_gold"]
+bg_color = Color(0.16, 0.11, 0.035, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.72, 0.18, 0.95)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+content_margin_left = 18.0
+content_margin_top = 10.0
+content_margin_right = 18.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="Style_menu"]
+bg_color = Color(0.055, 0.075, 0.09, 0.97)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.44, 0.68, 0.55, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+content_margin_left = 28.0
+content_margin_top = 24.0
+content_margin_right = 28.0
+content_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxFlat" id="Style_toast"]
+bg_color = Color(0.04, 0.06, 0.075, 0.94)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+content_margin_left = 18.0
+content_margin_top = 10.0
+content_margin_right = 18.0
+content_margin_bottom = 10.0
+
+[node name="GreenCoastM02" type="Node3D"]
+script = ExtResource("4_m02")
+player_path = NodePath("Player")
+camera_path = NodePath("Camera")
+vista_point_path = NodePath("VistaPoint")
+vista_camera_anchor_path = NodePath("VistaCameraAnchor")
+vista_look_target_path = NodePath("VistaLookTarget")
+vista_prompt_path = NodePath("UI/VistaPrompt")
+vista_prompt_label_path = NodePath("UI/VistaPrompt/Label")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_green_coast")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-48, -28, 0)
+light_color = Color(1, 0.83, 0.62, 1)
+light_energy = 1.35
+shadow_enabled = true
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = ExtResource("2_navmesh")
+
+[node name="Floor" type="StaticBody3D" parent="NavigationRegion3D"]
+position = Vector3(0, -0.25, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="NavigationRegion3D/Floor"]
+mesh = SubResource("Mesh_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor"]
+shape = SubResource("Shape_floor")
+
+[node name="Sea" type="MeshInstance3D" parent="."]
+position = Vector3(0, -1.3, -36)
+mesh = SubResource("Mesh_sea")
+
+[node name="VistaPoint" type="Node3D" parent="."]
+position = Vector3(0, 0, -9)
+
+[node name="VistaCameraAnchor" type="Node3D" parent="."]
+position = Vector3(0, 5.5, -3.45)
+
+[node name="VistaLookTarget" type="Node3D" parent="."]
+position = Vector3(0, -0.5, -30)
+
+[node name="Player" type="CharacterBody3D" parent="."]
+position = Vector3(0, 1, 5.5)
+script = ExtResource("1_player")
+move_speed = 4.0
+allow_empty_space_destination_projection = false
+camera_path = NodePath("../Camera")
+navigation_agent_path = NodePath("NavigationAgent3D")
+movement_floor_path = NodePath("../NavigationRegion3D/Floor")
+destination_marker_path = NodePath("../DestinationMarker")
+
+[node name="Mesh" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("Mesh_player")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("Shape_player")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Player"]
+path_height_offset = -0.5
+path_desired_distance = 0.35
+target_desired_distance = 0.35
+radius = 0.55
+height = 2.0
+avoidance_enabled = false
+
+[node name="DestinationMarker" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("Mesh_destination")
+
+[node name="Camera" type="Camera3D" parent="."]
+position = Vector3(0, 9.5, 15.5)
+rotation_degrees = Vector3(-34.5, 0, 0)
+current = true
+script = ExtResource("3_camera")
+target_path = NodePath("../Player")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Stats" type="PanelContainer" parent="UI/HUD"]
+offset_left = 22.0
+offset_top = 20.0
+offset_right = 590.0
+offset_bottom = 100.0
+theme_override_styles/panel = SubResource("Style_dark")
+
+[node name="VBox" type="VBoxContainer" parent="UI/HUD/Stats"]
+theme_override_constants/separation = 5
+
+[node name="ResourceLabel" type="Label" parent="UI/HUD/Stats/VBox"]
+theme_override_colors/font_color = Color(0.92, 1, 0.86, 1)
+theme_override_font_sizes/font_size = 20
+text = "목재 0   돌 0   기념품 미발견"
+
+[node name="ObjectiveLabel" type="Label" parent="UI/HUD/Stats/VBox"]
+theme_override_colors/font_color = Color(0.82, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 17
+text = "현재 목표: 왼쪽 작은 숲으로 이동"
+
+[node name="PauseHint" type="Label" parent="UI/HUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -245.0
+offset_top = 24.0
+offset_right = -22.0
+offset_bottom = 53.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.92, 0.96, 1, 0.9)
+theme_override_font_sizes/font_size = 17
+text = "WASD·우클릭 이동  |  Esc 메뉴"
+horizontal_alignment = 2
+
+[node name="InteractionPrompt" type="PanelContainer" parent="UI"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -190.0
+offset_top = -145.0
+offset_right = 190.0
+offset_bottom = -94.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("Style_dark")
+
+[node name="Label" type="Label" parent="UI/InteractionPrompt"]
+theme_override_colors/font_color = Color(0.92, 1, 0.82, 1)
+theme_override_font_sizes/font_size = 20
+text = "E: 상호작용"
+horizontal_alignment = 1
+
+[node name="VistaPrompt" type="PanelContainer" parent="UI"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -170.0
+offset_top = -82.0
+offset_right = 170.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("Style_gold")
+
+[node name="Label" type="Label" parent="UI/VistaPrompt"]
+theme_override_colors/font_color = Color(1, 0.91, 0.62, 1)
+theme_override_font_sizes/font_size = 21
+text = "E: 전망 보기"
+horizontal_alignment = 1
+
+[node name="Toast" type="PanelContainer" parent="UI"]
+visible = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 340.0
+offset_top = 112.0
+offset_right = -340.0
+offset_bottom = 162.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("Style_toast")
+
+[node name="Label" type="Label" parent="UI/Toast"]
+theme_override_font_sizes/font_size = 18
+text = "저장 완료"
+horizontal_alignment = 1
+
+[node name="ToastTimer" type="Timer" parent="UI"]
+wait_time = 3.2
+one_shot = true
+
+[node name="StartMenu" type="ColorRect" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.025, 0.045, 0.055, 0.86)
+
+[node name="Panel" type="PanelContainer" parent="UI/StartMenu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.0
+offset_top = -205.0
+offset_right = 230.0
+offset_bottom = 205.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("Style_menu")
+
+[node name="VBox" type="VBoxContainer" parent="UI/StartMenu/Panel"]
+theme_override_constants/separation = 13
+
+[node name="Title" type="Label" parent="UI/StartMenu/Panel/VBox"]
+theme_override_colors/font_color = Color(0.72, 1, 0.78, 1)
+theme_override_font_sizes/font_size = 34
+text = "GREEN COAST"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="UI/StartMenu/Panel/VBox"]
+theme_override_colors/font_color = Color(0.78, 0.88, 0.94, 1)
+theme_override_font_sizes/font_size = 17
+text = "첫 탐험·귀환 루프 시험"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="UI/StartMenu/Panel/VBox"]
+custom_minimum_size = Vector2(0, 10)
+
+[node name="NewButton" type="Button" parent="UI/StartMenu/Panel/VBox"]
+custom_minimum_size = Vector2(0, 52)
+theme_override_font_sizes/font_size = 20
+text = "새 시험 시작"
+
+[node name="ContinueButton" type="Button" parent="UI/StartMenu/Panel/VBox"]
+custom_minimum_size = Vector2(0, 52)
+theme_override_font_sizes/font_size = 20
+text = "계속하기"
+
+[node name="QuitButton" type="Button" parent="UI/StartMenu/Panel/VBox"]
+custom_minimum_size = Vector2(0, 52)
+theme_override_font_sizes/font_size = 20
+text = "종료"
+
+[node name="Message" type="Label" parent="UI/StartMenu/Panel/VBox"]
+theme_override_font_sizes/font_size = 15
+text = "새 시험을 시작하세요."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="NewGameConfirm" type="ColorRect" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.03, 0.04, 0.78)
+
+[node name="Panel" type="PanelContainer" parent="UI/NewGameConfirm"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -120.0
+offset_right = 250.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("Style_menu")
+
+[node name="VBox" type="VBoxContainer" parent="UI/NewGameConfirm/Panel"]
+theme_override_constants/separation = 14
+
+[node name="Label" type="Label" parent="UI/NewGameConfirm/Panel/VBox"]
+theme_override_font_sizes/font_size = 19
+text = "기존 M02 진행이 있습니다.\n새 시험으로 덮어쓸까요?"
+horizontal_alignment = 1
+
+[node name="ConfirmButton" type="Button" parent="UI/NewGameConfirm/Panel/VBox"]
+custom_minimum_size = Vector2(0, 46)
+text = "새 시험 확인"
+
+[node name="CancelButton" type="Button" parent="UI/NewGameConfirm/Panel/VBox"]
+custom_minimum_size = Vector2(0, 46)
+text = "취소"
+
+[node name="PauseMenu" type="ColorRect" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.03, 0.04, 0.72)
+
+[node name="Panel" type="PanelContainer" parent="UI/PauseMenu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -145.0
+offset_right = 210.0
+offset_bottom = 145.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("Style_menu")
+
+[node name="VBox" type="VBoxContainer" parent="UI/PauseMenu/Panel"]
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="UI/PauseMenu/Panel/VBox"]
+theme_override_font_sizes/font_size = 28
+text = "Green Coast"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="UI/PauseMenu/Panel/VBox"]
+custom_minimum_size = Vector2(0, 52)
+theme_override_font_sizes/font_size = 19
+text = "계속하기"
+
+[node name="SaveQuitButton" type="Button" parent="UI/PauseMenu/Panel/VBox"]
+custom_minimum_size = Vector2(0, 52)
+theme_override_font_sizes/font_size = 19
+text = "저장 후 종료"

@@ -4,6 +4,7 @@ extends CharacterBody3D
 @export var destination_snap_tolerance: float = 0.75
 @export var arrival_distance: float = 0.35
 @export var stuck_timeout: float = 1.5
+@export var allow_empty_space_destination_projection := true
 @export_node_path("Camera3D") var camera_path: NodePath
 @export_node_path("NavigationAgent3D") var navigation_agent_path: NodePath
 @export_node_path("StaticBody3D") var movement_floor_path: NodePath
@@ -21,6 +22,7 @@ var _pending_ray_direction := Vector3.ZERO
 var _has_pending_click := false
 var _last_progress_position := Vector3.ZERO
 var _stuck_elapsed := 0.0
+var _movement_locked := false
 
 const DIRECT_MOVE_ACTIONS := [&"move_left", &"move_right", &"move_forward", &"move_back"]
 const CLICK_RAY_LENGTH := 1000.0
@@ -47,6 +49,8 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if _movement_locked:
+		return
 	if not event.is_action_pressed("move_to_point"):
 		return
 	if _has_direct_move_key_pressed() or _movement_camera == null or not _navigation_is_ready():
@@ -63,6 +67,17 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if _movement_locked:
+		velocity.x = 0.0
+		velocity.z = 0.0
+		if is_on_floor():
+			if velocity.y < 0.0:
+				velocity.y = 0.0
+		else:
+			velocity += get_gravity() * delta
+		move_and_slide()
+		return
+
 	var input_vector := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var move_direction := Vector3.ZERO
 	var direct_move_pressed := _has_direct_move_key_pressed()
@@ -142,6 +157,8 @@ func _consume_pending_click() -> void:
 	var intent_position: Variant = null
 
 	if hit.is_empty():
+		if not allow_empty_space_destination_projection:
+			return
 		intent_position = _intersect_movement_plane(ray_origin, ray_direction)
 	else:
 		var collider := hit.get("collider") as CollisionObject3D
@@ -287,6 +304,23 @@ func _finish_click_movement() -> void:
 	_cancel_click_movement()
 	velocity.x = 0.0
 	velocity.z = 0.0
+
+
+func set_movement_locked(locked: bool) -> void:
+	_movement_locked = locked
+	if locked:
+		cancel_active_movement()
+
+
+func cancel_active_movement() -> void:
+	_has_pending_click = false
+	_cancel_click_movement()
+	velocity.x = 0.0
+	velocity.z = 0.0
+
+
+func is_movement_locked() -> bool:
+	return _movement_locked
 
 
 func _horizontal_distance(from: Vector3, to: Vector3) -> float:
