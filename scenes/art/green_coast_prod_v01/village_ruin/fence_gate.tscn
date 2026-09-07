@@ -1,0 +1,69 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/wood_dark.tres" id="1_5ijpx"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/metal.tres" id="2_78gxy"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/wood.tres" id="3_2fndu"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_msn6r"]
+material = ExtResource("1_5ijpx")
+top_radius = 0.22
+bottom_radius = 0.31
+radial_segments = 6
+rings = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_4meme"]
+material = ExtResource("2_78gxy")
+size = Vector3(0.42, 0.16, 0.42)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3eelp"]
+material = ExtResource("1_5ijpx")
+top_radius = 0.22
+bottom_radius = 0.31
+radial_segments = 6
+rings = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_pr1r2"]
+material = ExtResource("2_78gxy")
+size = Vector3(0.42, 0.16, 0.42)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4arvk"]
+material = ExtResource("3_2fndu")
+size = Vector3(3.1, 0.2, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5cow3"]
+material = ExtResource("3_2fndu")
+size = Vector3(3.1, 0.2, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8a0f7"]
+material = ExtResource("1_5ijpx")
+size = Vector3(3.15, 0.18, 0.18)
+
+[node name="FenceGate" type="Node3D" unique_id=1995542808]
+
+[node name="Post" type="MeshInstance3D" parent="." unique_id=1450193466]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 1, 0)
+mesh = SubResource("CylinderMesh_msn6r")
+
+[node name="MetalBand" type="MeshInstance3D" parent="." unique_id=425734016]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 1.35, -0.02)
+mesh = SubResource("BoxMesh_4meme")
+
+[node name="@MeshInstance3D@66" type="MeshInstance3D" parent="." unique_id=671419955]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 1, 0)
+mesh = SubResource("CylinderMesh_3eelp")
+
+[node name="@MeshInstance3D@67" type="MeshInstance3D" parent="." unique_id=1631963595]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 1.35, -0.02)
+mesh = SubResource("BoxMesh_pr1r2")
+
+[node name="GateRail" type="MeshInstance3D" parent="." unique_id=1097904960]
+transform = Transform3D(0.99999905, 0.0013962629, 0, -0.0013962629, 0.99999905, 0, 0, 0, 1, 0, 0.58, 0)
+mesh = SubResource("BoxMesh_4arvk")
+
+[node name="@MeshInstance3D@68" type="MeshInstance3D" parent="." unique_id=310970942]
+transform = Transform3D(0.99999905, -0.0013962629, 0, 0.0013962629, 0.99999905, 0, 0, 0, 1, 0, 1.35, 0)
+mesh = SubResource("BoxMesh_5cow3")
+
+[node name="Brace" type="MeshInstance3D" parent="." unique_id=765477956]
+transform = Transform3D(0.9999731, -0.007330317, 0, 0.007330317, 0.9999731, 0, 0, 0, 1, 0, 0.98, 0.02)
+mesh = SubResource("BoxMesh_8a0f7")

@@ -1,0 +1,44 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/wood_dark.tres" id="1_ji5it"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/wood.tres" id="2_swea0"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/metal.tres" id="3_chhlc"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/flower_yellow.tres" id="4_qkkru"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_onevc"]
+material = ExtResource("1_ji5it")
+top_radius = 0.18
+bottom_radius = 0.26
+height = 2.5
+radial_segments = 6
+rings = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_e2pld"]
+material = ExtResource("2_swea0")
+size = Vector3(1, 0.16, 0.18)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wvb0h"]
+material = ExtResource("3_chhlc")
+size = Vector3(0.42, 0.58, 0.42)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j2lmn"]
+material = ExtResource("4_qkkru")
+size = Vector3(0.27, 0.4, 0.27)
+
+[node name="Lantern" type="Node3D" unique_id=723433201]
+
+[node name="Post" type="MeshInstance3D" parent="." unique_id=1658009206]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+mesh = SubResource("CylinderMesh_onevc")
+
+[node name="Arm" type="MeshInstance3D" parent="." unique_id=936199972]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 2.24, 0)
+mesh = SubResource("BoxMesh_e2pld")
+
+[node name="LanternFrame" type="MeshInstance3D" parent="." unique_id=1792847318]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.82, 1.82, 0)
+mesh = SubResource("BoxMesh_wvb0h")
+
+[node name="Glow" type="MeshInstance3D" parent="." unique_id=51352616]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.82, 1.82, 0)
+mesh = SubResource("BoxMesh_j2lmn")

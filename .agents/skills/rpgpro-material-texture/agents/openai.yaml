@@ -1,0 +1,4 @@
+interface:
+  display_name: "RPGpro Material & Texture"
+  short_description: "Unify RPGpro surface materials and sprite sampling"
+  default_prompt: "Use $rpgpro-material-texture to validate RPGpro 3D surface materials, transitions, UV repetition, and 2.5D sprite sampling."

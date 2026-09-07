@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "prod_fabric_blue"
+albedo_color = Color(0.20784314, 0.43137255, 0.64705884, 1)
+roughness = 0.92

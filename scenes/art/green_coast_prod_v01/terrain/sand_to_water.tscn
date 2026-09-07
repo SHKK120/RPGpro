@@ -1,0 +1,40 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/sand.tres" id="1_4wd30"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/wet_sand.tres" id="2_a8fo0"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/shallow_water.tres" id="3_3o31h"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/water_foam.tres" id="4_4d478"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_v6qox"]
+material = ExtResource("1_4wd30")
+size = Vector3(4, 0.12, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_esnso"]
+material = ExtResource("2_a8fo0")
+size = Vector3(4, 0.04, 1.15)
+
+[sub_resource type="BoxMesh" id="BoxMesh_38v7m"]
+material = ExtResource("3_3o31h")
+size = Vector3(4, 0.035, 1.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7fjpe"]
+material = ExtResource("4_4d478")
+size = Vector3(4, 0.018, 0.12)
+
+[node name="SandToWater" type="Node3D" unique_id=976996386]
+
+[node name="Sand" type="MeshInstance3D" parent="." unique_id=1376432976]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+mesh = SubResource("BoxMesh_v6qox")
+
+[node name="WetBand" type="MeshInstance3D" parent="." unique_id=347634680]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.095, 0.65)
+mesh = SubResource("BoxMesh_esnso")
+
+[node name="Water" type="MeshInstance3D" parent="." unique_id=1025798428]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 1.45)
+mesh = SubResource("BoxMesh_38v7m")
+
+[node name="Foam" type="MeshInstance3D" parent="." unique_id=1681264630]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0.92)
+mesh = SubResource("BoxMesh_7fjpe")

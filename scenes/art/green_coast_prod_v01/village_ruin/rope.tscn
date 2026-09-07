@@ -1,0 +1,53 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/rope.tres" id="1_5p85g"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_a1my3"]
+material = ExtResource("1_5p85g")
+top_radius = 0.62
+bottom_radius = 0.62
+height = 0.08
+radial_segments = 12
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0x3ko"]
+material = ExtResource("1_5p85g")
+top_radius = 0.54
+bottom_radius = 0.54
+height = 0.08
+radial_segments = 12
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3fcaq"]
+material = ExtResource("1_5p85g")
+top_radius = 0.46
+bottom_radius = 0.46
+height = 0.08
+radial_segments = 12
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_d4a33"]
+material = ExtResource("1_5p85g")
+top_radius = 0.38
+bottom_radius = 0.38
+height = 0.08
+radial_segments = 12
+rings = 1
+
+[node name="Rope" type="Node3D" unique_id=1885614132]
+
+[node name="Coil0" type="MeshInstance3D" parent="." unique_id=324399734]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+mesh = SubResource("CylinderMesh_a1my3")
+
+[node name="Coil1" type="MeshInstance3D" parent="." unique_id=1426873727]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19, 0)
+mesh = SubResource("CylinderMesh_0x3ko")
+
+[node name="Coil2" type="MeshInstance3D" parent="." unique_id=519929429]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26, 0)
+mesh = SubResource("CylinderMesh_3fcaq")
+
+[node name="Coil3" type="MeshInstance3D" parent="." unique_id=935781364]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33, 0)
+mesh = SubResource("CylinderMesh_d4a33")

@@ -1,0 +1,55 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/wood.tres" id="1_flh46"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/wood_dark.tres" id="2_ucrpm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_rflg8"]
+material = ExtResource("1_flh46")
+size = Vector3(1.1, 1.1, 1.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uqbyy"]
+material = ExtResource("2_ucrpm")
+size = Vector3(1.22, 0.14, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lmnob"]
+material = ExtResource("2_ucrpm")
+size = Vector3(1.22, 0.14, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3nh3a"]
+material = ExtResource("2_ucrpm")
+size = Vector3(1.28, 0.13, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vkdsm"]
+material = ExtResource("2_ucrpm")
+size = Vector3(1.28, 0.13, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pncfe"]
+size = Vector3(1.1, 1.1, 1.1)
+
+[node name="Crate" type="Node3D" unique_id=1693213438]
+
+[node name="Body" type="MeshInstance3D" parent="." unique_id=422735943]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+mesh = SubResource("BoxMesh_rflg8")
+
+[node name="Band" type="MeshInstance3D" parent="." unique_id=1749846882]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, -0.57)
+mesh = SubResource("BoxMesh_uqbyy")
+
+[node name="@MeshInstance3D@71" type="MeshInstance3D" parent="." unique_id=302151443]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02, -0.57)
+mesh = SubResource("BoxMesh_lmnob")
+
+[node name="BraceA" type="MeshInstance3D" parent="." unique_id=254157448]
+transform = Transform3D(0.999921, -0.01256604, 0, 0.01256604, 0.999921, 0, 0, 0, 1, 0, 0.55, -0.59)
+mesh = SubResource("BoxMesh_3nh3a")
+
+[node name="BraceB" type="MeshInstance3D" parent="." unique_id=1333570268]
+transform = Transform3D(0.999921, 0.01256604, 0, -0.01256604, 0.999921, 0, 0, 0, 1, 0, 0.55, -0.6)
+mesh = SubResource("BoxMesh_vkdsm")
+
+[node name="Collision" type="StaticBody3D" parent="." unique_id=1441562020]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+
+[node name="Shape" type="CollisionShape3D" parent="Collision" unique_id=675751802]
+shape = SubResource("BoxShape3D_pncfe")

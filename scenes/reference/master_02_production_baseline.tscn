@@ -1,0 +1,146 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/shallow_water.tres" id="1_kgoim"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/sand.tres" id="2_depfn"]
+[ext_resource type="PackedScene" path="res://scenes/art/green_coast_prod_v01/terrain/playable_ground.tscn" id="3_ratyd"]
+[ext_resource type="PackedScene" path="res://scenes/art/green_coast_prod_v01/terrain/soil_path.tscn" id="4_6mewu"]
+[ext_resource type="PackedScene" path="res://scenes/art/green_coast_prod_v01/terrain/cliff_straight.tscn" id="5_osea8"]
+[ext_resource type="PackedScene" path="res://scenes/art/green_coast_prod_v01/terrain/cliff_corner.tscn" id="6_e4uha"]
+[ext_resource type="PackedScene" path="res://scenes/art/green_coast_prod_v01/terrain/ramp_transition.tscn" id="7_5lt6y"]
+[ext_resource type="PackedScene" path="res://scenes/art/green_coast_prod_v01/nature/tree_base_a.tscn" id="8_rpr3a"]
+[ext_resource type="PackedScene" path="res://scenes/art/green_coast_prod_v01/nature/tree_base_b.tscn" id="9_mp3xq"]
+[ext_resource type="PackedScene" path="res://scenes/art/green_coast_prod_v01/nature/bush.tscn" id="10_ojvyd"]
+[ext_resource type="PackedScene" path="res://scenes/art/green_coast_prod_v01/nature/grass_cluster.tscn" id="11_yb3vh"]
+[ext_resource type="PackedScene" path="res://scenes/art/green_coast_prod_v01/nature/rock_small.tscn" id="12_1c1go"]
+[ext_resource type="PackedScene" path="res://scenes/art/green_coast_prod_v01/nature/rock_medium.tscn" id="13_2oxf0"]
+[ext_resource type="PackedScene" path="res://scenes/art/green_coast_prod_v01/village_ruin/fence_straight.tscn" id="14_3asvo"]
+[ext_resource type="PackedScene" path="res://scenes/art/green_coast_prod_v01/village_ruin/fence_corner.tscn" id="15_cpvf3"]
+[ext_resource type="PackedScene" path="res://scenes/art/green_coast_prod_v01/village_ruin/ruin_wall.tscn" id="16_u6in4"]
+[ext_resource type="PackedScene" path="res://scenes/art/green_coast_prod_v01/village_ruin/ruin_arch.tscn" id="17_yelx4"]
+[ext_resource type="PackedScene" path="res://scenes/art/green_coast_prod_v01/village_ruin/building_wall.tscn" id="18_k7g3o"]
+[ext_resource type="PackedScene" path="res://scenes/art/green_coast_prod_v01/village_ruin/door_wall.tscn" id="19_p2pfr"]
+[ext_resource type="PackedScene" path="res://scenes/art/green_coast_prod_v01/village_ruin/roof_piece.tscn" id="20_7ydtd"]
+
+[sub_resource type="Environment" id="Environment_oyh0q"]
+background_mode = 1
+background_color = Color(0.5686275, 0.7921569, 0.85490197, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.9647059, 0.89411765, 0.7607843, 1)
+ambient_light_energy = 0.38
+tonemap_mode = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_qognt"]
+material = ExtResource("1_kgoim")
+size = Vector3(34, 0.18, 12)
+
+[sub_resource type="BoxMesh" id="BoxMesh_x160j"]
+material = ExtResource("2_depfn")
+size = Vector3(20, 0.3, 3.5)
+
+[node name="Master02ProductionBaseline" type="Node3D" unique_id=1941770119]
+
+[node name="BrightWarmEnvironment" type="WorldEnvironment" parent="." unique_id=774313740]
+environment = SubResource("Environment_oyh0q")
+
+[node name="WarmSun" type="DirectionalLight3D" parent="." unique_id=757593092]
+transform = Transform3D(0.81915206, 0.45198438, -0.35312894, 0, 0.6156615, 0.7880107, 0.57357645, -0.6455006, 0.5043204, 0, 0, 0)
+light_color = Color(1, 0.9411765, 0.7529412, 1)
+light_energy = 0.82
+shadow_enabled = true
+
+[node name="GameplayCamera" type="Camera3D" parent="." unique_id=1838486573]
+transform = Transform3D(0.74098694, -0.3177957, 0.59156084, 0, 0.8809289, 0.47324872, -0.6715194, -0.3506711, 0.6527568, 14.5, 12.5, 16.5)
+current = true
+fov = 46.0
+
+[node name="Sea" type="MeshInstance3D" parent="." unique_id=741323737]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.72, -9)
+mesh = SubResource("BoxMesh_qognt")
+
+[node name="Beach" type="MeshInstance3D" parent="." unique_id=1046660936]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44, -3.6)
+mesh = SubResource("BoxMesh_x160j")
+
+[node name="TerrainA" type="Node3D" parent="." unique_id=1240720816 instance=ExtResource("3_ratyd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 4)
+
+[node name="TerrainB" type="Node3D" parent="." unique_id=2049264229 instance=ExtResource("3_ratyd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
+
+[node name="TerrainC" type="Node3D" parent="." unique_id=1310071725 instance=ExtResource("3_ratyd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
+
+[node name="TerrainD" type="Node3D" parent="." unique_id=571510980 instance=ExtResource("3_ratyd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 4)
+
+[node name="PathA" type="Node3D" parent="." unique_id=491908088 instance=ExtResource("4_6mewu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
+
+[node name="PathB" type="Node3D" parent="." unique_id=869828801 instance=ExtResource("4_6mewu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="CliffStraightA" type="Node3D" parent="." unique_id=874661616 instance=ExtResource("5_osea8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+
+[node name="CliffStraightB" type="Node3D" parent="." unique_id=2135129396 instance=ExtResource("5_osea8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="CliffCorner" type="Node3D" parent="." unique_id=1537253890 instance=ExtResource("6_e4uha")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.45, 0, 0.05)
+
+[node name="Ramp" type="Node3D" parent="." unique_id=1203618198 instance=ExtResource("7_5lt6y")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.2, 0, 0.4)
+
+[node name="TreeA" type="Node3D" parent="." unique_id=980604285 instance=ExtResource("8_rpr3a")]
+transform = Transform3D(0.95105654, 0, 0.309017, 0, 1, 0, -0.309017, 0, 0.95105654, -6.2, 0, 5.1)
+
+[node name="TreeB" type="Node3D" parent="." unique_id=37706250 instance=ExtResource("9_mp3xq")]
+transform = Transform3D(0.92718387, 0, -0.37460658, 0, 1, 0, 0.37460658, 0, 0.92718387, 5.5, 0, 4.7)
+
+[node name="BushA" type="Node3D" parent="." unique_id=721785534 instance=ExtResource("10_ojvyd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 2.9)
+
+[node name="BushB" type="Node3D" parent="." unique_id=1724080512 instance=ExtResource("10_ojvyd")]
+transform = Transform3D(0.5899999, 0, 1.02191, 0, 1.05, 0, -1.02191, 0, 0.5899999, 4.1, 0, 4.6)
+
+[node name="GrassA" type="Node3D" parent="." unique_id=2068703433 instance=ExtResource("11_yb3vh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7, 0, 5.3)
+
+[node name="GrassB" type="Node3D" parent="." unique_id=1542618222 instance=ExtResource("11_yb3vh")]
+transform = Transform3D(-0.29071712, 0, 0.7987387, 0, 0.9, 0, -0.7987387, 0, -0.29071712, 3.4, 0, 5.6)
+
+[node name="RockSmall" type="Node3D" parent="." unique_id=355919443 instance=ExtResource("12_1c1go")]
+transform = Transform3D(0.90630776, 0, 0.42261827, 0, 1, 0, -0.42261827, 0, 0.90630776, 0.2, 0, 1.5)
+
+[node name="RockMedium" type="Node3D" parent="." unique_id=900807753 instance=ExtResource("13_2oxf0")]
+transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 6.2, -0.28, -2.6)
+
+[node name="FenceA" type="Node3D" parent="." unique_id=1161268448 instance=ExtResource("14_3asvo")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.6, 0, 6)
+
+[node name="FenceCorner" type="Node3D" parent="." unique_id=2070125320 instance=ExtResource("15_cpvf3")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.6, 0, 4)
+
+[node name="RuinWall" type="Node3D" parent="." unique_id=59072391 instance=ExtResource("16_u6in4")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.5, 0, 6)
+
+[node name="RuinArch" type="Node3D" parent="." unique_id=614850328 instance=ExtResource("17_yelx4")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 3.9, 0, 6)
+
+[node name="BuildingWall" type="Node3D" parent="." unique_id=1474815295 instance=ExtResource("18_k7g3o")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7, 0, 7.8)
+
+[node name="DoorWall" type="Node3D" parent="." unique_id=50494917 instance=ExtResource("19_p2pfr")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7, 0, 3.8)
+
+[node name="Roof" type="Node3D" parent="." unique_id=1669348465 instance=ExtResource("20_7ydtd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 2.7, 5.8)
+
+[node name="@Node3D@33" type="Node3D" parent="." unique_id=1142425171 instance=ExtResource("13_2oxf0")]
+transform = Transform3D(1.2, 0, 0, 0, 1.5, 0, 0, 0, 1.1, -8, -0.3, -5.1)
+
+[node name="@Node3D@34" type="Node3D" parent="." unique_id=1135704821 instance=ExtResource("13_2oxf0")]
+transform = Transform3D(0.75, 0, 0, 0, 0.95, 0, 0, 0, 0.8, -5.8, -0.45, -7)
+
+[node name="@Node3D@35" type="Node3D" parent="." unique_id=17816687 instance=ExtResource("13_2oxf0")]
+transform = Transform3D(1, 0, 0, 0, 1.25, 0, 0, 0, 0.9, 4.8, -0.35, -6.2)

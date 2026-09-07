@@ -1,0 +1,28 @@
+[gd_scene format=4]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/rock_cliff.tres" id="1_4fuud"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_uoycm"]
+_surfaces = [{
+"aabb": AABB(-0.62806016, 0, -0.48072973, 1.1161789, 0.66, 0.9496561),
+"format": 34359738375,
+"material": ExtResource("1_4fuud"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 84,
+"vertex_data": PackedByteArray("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")
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ww881"]
+size = Vector3(0.9, 0.52, 0.7)
+
+[node name="RockSmall" type="Node3D" unique_id=2040729741]
+
+[node name="DirectionalBoulder" type="MeshInstance3D" parent="." unique_id=67576958]
+mesh = SubResource("ArrayMesh_uoycm")
+
+[node name="RockCollision" type="StaticBody3D" parent="." unique_id=317398725]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26, 0)
+
+[node name="Shape" type="CollisionShape3D" parent="RockCollision" unique_id=449744866]
+shape = SubResource("BoxShape3D_ww881")

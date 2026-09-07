@@ -1,0 +1,76 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/wood_dark.tres" id="1_nmoio"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/grass_foliage_dark.tres" id="2_bdv1w"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/grass_foliage_light.tres" id="3_o5rts"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pjk25"]
+material = ExtResource("1_nmoio")
+top_radius = 0.24
+bottom_radius = 0.43
+height = 3.3
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_u70sb"]
+material = ExtResource("2_bdv1w")
+top_radius = 0.1
+bottom_radius = 1.35
+height = 1.25
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2kmnl"]
+material = ExtResource("3_o5rts")
+top_radius = 0.1
+bottom_radius = 1.16
+height = 1.25
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_r2338"]
+material = ExtResource("2_bdv1w")
+top_radius = 0.1
+bottom_radius = 0.97
+height = 1.25
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_e8372"]
+material = ExtResource("3_o5rts")
+top_radius = 0.1
+bottom_radius = 0.78
+height = 1.25
+radial_segments = 8
+rings = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6blrv"]
+size = Vector3(0.64, 2.7, 0.64)
+
+[node name="TreeBaseC" type="Node3D" unique_id=1206299192]
+
+[node name="Trunk" type="MeshInstance3D" parent="." unique_id=1241992426]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0)
+mesh = SubResource("CylinderMesh_pjk25")
+
+[node name="PineTier0" type="MeshInstance3D" parent="." unique_id=640081863]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+mesh = SubResource("CylinderMesh_u70sb")
+
+[node name="PineTier1" type="MeshInstance3D" parent="." unique_id=876958545]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0)
+mesh = SubResource("CylinderMesh_2kmnl")
+
+[node name="PineTier2" type="MeshInstance3D" parent="." unique_id=892547865]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.05, 0)
+mesh = SubResource("CylinderMesh_r2338")
+
+[node name="PineTier3" type="MeshInstance3D" parent="." unique_id=758291135]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.7, 0)
+mesh = SubResource("CylinderMesh_e8372")
+
+[node name="TrunkCollision" type="StaticBody3D" parent="." unique_id=2119466123]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
+
+[node name="Shape" type="CollisionShape3D" parent="TrunkCollision" unique_id=2043648320]
+shape = SubResource("BoxShape3D_6blrv")

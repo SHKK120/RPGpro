@@ -1,0 +1,4 @@
+interface:
+  display_name: "RPGpro Low-Poly Modeling"
+  short_description: "Build RPGpro 3D gameplay foundations and proxies"
+  default_prompt: "Use $rpgpro-lowpoly-modeling to build reusable 3D gameplay foundations, modular terrain, collisions, and visual proxies for RPGpro."

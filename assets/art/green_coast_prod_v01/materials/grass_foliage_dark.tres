@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "prod_grass_foliage_dark"
+albedo_color = Color(0.19215687, 0.35686275, 0.23137255, 1)
+roughness = 0.98

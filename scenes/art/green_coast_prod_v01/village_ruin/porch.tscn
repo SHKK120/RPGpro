@@ -1,0 +1,71 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/wood.tres" id="1_yljnc"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/wood_dark.tres" id="2_5ghat"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xm26a"]
+material = ExtResource("1_yljnc")
+size = Vector3(0.68, 0.18, 2.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fkeab"]
+material = ExtResource("1_yljnc")
+size = Vector3(0.68, 0.18, 2.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fxr8y"]
+material = ExtResource("1_yljnc")
+size = Vector3(0.68, 0.18, 2.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g1fk4"]
+material = ExtResource("1_yljnc")
+size = Vector3(0.68, 0.18, 2.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_p7inj"]
+material = ExtResource("1_yljnc")
+size = Vector3(0.68, 0.18, 2.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6a4mo"]
+material = ExtResource("2_5ghat")
+size = Vector3(0.28, 1.3, 0.28)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2b41l"]
+material = ExtResource("2_5ghat")
+size = Vector3(0.28, 1.3, 0.28)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0rk3m"]
+size = Vector3(4, 0.28, 2.2)
+
+[node name="Porch" type="Node3D" unique_id=182544240]
+
+[node name="Plank0" type="MeshInstance3D" parent="." unique_id=897096142]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6, 0.23, 0)
+mesh = SubResource("BoxMesh_xm26a")
+
+[node name="Plank1" type="MeshInstance3D" parent="." unique_id=749398702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0.23, 0)
+mesh = SubResource("BoxMesh_fkeab")
+
+[node name="Plank2" type="MeshInstance3D" parent="." unique_id=1486516062]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23, 0)
+mesh = SubResource("BoxMesh_fxr8y")
+
+[node name="Plank3" type="MeshInstance3D" parent="." unique_id=350118262]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0.23, 0)
+mesh = SubResource("BoxMesh_g1fk4")
+
+[node name="Plank4" type="MeshInstance3D" parent="." unique_id=1605147312]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6, 0.23, 0)
+mesh = SubResource("BoxMesh_p7inj")
+
+[node name="Post" type="MeshInstance3D" parent="." unique_id=987498804]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, 0.65, 0)
+mesh = SubResource("BoxMesh_6a4mo")
+
+[node name="@MeshInstance3D@65" type="MeshInstance3D" parent="." unique_id=2122357619]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 0.65, 0)
+mesh = SubResource("BoxMesh_2b41l")
+
+[node name="DeckCollision" type="StaticBody3D" parent="." unique_id=748029415]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23, 0)
+
+[node name="Shape" type="CollisionShape3D" parent="DeckCollision" unique_id=679479688]
+shape = SubResource("BoxShape3D_0rk3m")

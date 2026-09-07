@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "prod_flower_purple"
+albedo_color = Color(0.5019608, 0.39215687, 0.5568628, 1)
+roughness = 0.94

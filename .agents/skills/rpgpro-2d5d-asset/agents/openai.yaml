@@ -1,0 +1,4 @@
+interface:
+  display_name: "RPGpro 2.5D Asset"
+  short_description: "Build image-based Godot visuals with simple 3D gameplay proxies"
+  default_prompt: "Use $rpgpro-2d5d-asset to build a reusable Sprite3D visual with a separate collision proxy."

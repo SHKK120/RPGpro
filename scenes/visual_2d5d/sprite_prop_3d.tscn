@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/visual_2d5d/sprite_prop_3d.gd" id="1_prop"]
+[ext_resource type="Script" path="res://scripts/visual_2d5d/collision_proxy_3d.gd" id="2_proxy"]
+
+[node name="SpriteProp3D" type="Node3D"]
+script = ExtResource("1_prop")
+
+[node name="VisualRoot" type="Node3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="VisualRoot"]
+
+[node name="CollisionProxy" type="StaticBody3D" parent="."]
+script = ExtResource("2_proxy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionProxy"]

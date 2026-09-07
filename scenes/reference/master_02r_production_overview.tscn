@@ -1,0 +1,35 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/reference/master_02r_green_coast_area.tscn" id="1_u71ft"]
+
+[sub_resource type="Environment" id="Environment_u6ea2"]
+background_mode = 1
+background_color = Color(0.45882353, 0.69803923, 0.8156863, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.78431374, 0.8156863, 0.7490196, 1)
+ambient_light_energy = 0.3
+tonemap_mode = 2
+
+[node name="Master02rProductionOverview" type="Node3D" unique_id=1080829508]
+
+[node name="GreenCoastPlayableArea" type="Node3D" parent="." unique_id=173671528 instance=ExtResource("1_u71ft")]
+
+[node name="WarmCoastalEnvironment" type="WorldEnvironment" parent="." unique_id=2064137815]
+environment = SubResource("Environment_u6ea2")
+
+[node name="WarmSun" type="DirectionalLight3D" parent="." unique_id=1997742223]
+transform = Transform3D(0.7880108, 0.4575257, -0.41195792, 0, 0.66913056, 0.74314487, 0.6156615, -0.58560616, 0.5272821, 0, 0, 0)
+light_color = Color(1, 0.9098039, 0.7411765, 1)
+light_energy = 0.62
+shadow_enabled = true
+shadow_opacity = 0.62
+
+[node name="CoolSkyFill" type="DirectionalLight3D" parent="." unique_id=309019812]
+transform = Transform3D(-0.70710677, -0.63554335, 0.3099752, 0, 0.43837115, 0.89879405, -0.70710677, 0.63554335, -0.3099752, 0, 0, 0)
+light_color = Color(0.72156864, 0.8392157, 0.8745098, 1)
+light_energy = 0.16
+
+[node name="ProductionOverviewCamera" type="Camera3D" parent="." unique_id=1611301606]
+transform = Transform3D(0.77491105, -0.30152887, 0.55551165, 0, 0.8788764, 0.47704956, -0.6320703, -0.369671, 0.681051, 17.5, 15, 20.5)
+current = true
+fov = 43.0

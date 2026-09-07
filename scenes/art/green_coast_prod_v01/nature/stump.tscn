@@ -1,0 +1,39 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/wood_dark.tres" id="1_j18tj"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/wood.tres" id="2_vgayx"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_55nnh"]
+material = ExtResource("1_j18tj")
+top_radius = 0.68
+bottom_radius = 0.82
+height = 1.1
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5fkbl"]
+material = ExtResource("2_vgayx")
+top_radius = 0.61
+bottom_radius = 0.61
+height = 0.08
+radial_segments = 8
+rings = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hii1w"]
+size = Vector3(1.25, 1.04, 1.25)
+
+[node name="Stump" type="Node3D" unique_id=1895221771]
+
+[node name="StumpBody" type="MeshInstance3D" parent="." unique_id=1649010901]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+mesh = SubResource("CylinderMesh_55nnh")
+
+[node name="CutTop" type="MeshInstance3D" parent="." unique_id=418970662]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11, 0)
+mesh = SubResource("CylinderMesh_5fkbl")
+
+[node name="SimpleCollision" type="StaticBody3D" parent="." unique_id=1270496529]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52, 0)
+
+[node name="Shape" type="CollisionShape3D" parent="SimpleCollision" unique_id=848211101]
+shape = SubResource("BoxShape3D_hii1w")

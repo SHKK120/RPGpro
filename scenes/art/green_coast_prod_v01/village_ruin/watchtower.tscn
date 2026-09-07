@@ -1,0 +1,97 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/stone.tres" id="1_h744g"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/wood_dark.tres" id="2_twp8a"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/wood.tres" id="3_oklxw"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/roof_terracotta.tres" id="4_fktr5"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3fv5k"]
+material = ExtResource("1_h744g")
+size = Vector3(2.8, 2.3, 2.8)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ymtwn"]
+material = ExtResource("2_twp8a")
+top_radius = 0.18
+bottom_radius = 0.28
+height = 4.1
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4wjbn"]
+material = ExtResource("2_twp8a")
+top_radius = 0.18
+bottom_radius = 0.28
+height = 4.1
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8mcdc"]
+material = ExtResource("2_twp8a")
+top_radius = 0.18
+bottom_radius = 0.28
+height = 4.1
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_07gsw"]
+material = ExtResource("2_twp8a")
+top_radius = 0.18
+bottom_radius = 0.28
+height = 4.1
+radial_segments = 6
+rings = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_6eeo3"]
+material = ExtResource("3_oklxw")
+size = Vector3(3.9, 0.28, 3.9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cyihx"]
+material = ExtResource("4_fktr5")
+size = Vector3(4.5, 0.22, 2.15)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jotc1"]
+material = ExtResource("4_fktr5")
+size = Vector3(4.5, 0.22, 2.15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1tqg2"]
+size = Vector3(2.8, 2.3, 2.8)
+
+[node name="Watchtower" type="Node3D" unique_id=1437883561]
+
+[node name="StoneBase" type="MeshInstance3D" parent="." unique_id=531609597]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15, 0)
+mesh = SubResource("BoxMesh_3fv5k")
+
+[node name="TowerPost" type="MeshInstance3D" parent="." unique_id=1305916593]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05, 3.2, -1.05)
+mesh = SubResource("CylinderMesh_ymtwn")
+
+[node name="@MeshInstance3D@78" type="MeshInstance3D" parent="." unique_id=1949494629]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05, 3.2, 1.05)
+mesh = SubResource("CylinderMesh_4wjbn")
+
+[node name="@MeshInstance3D@79" type="MeshInstance3D" parent="." unique_id=468164588]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05, 3.2, -1.05)
+mesh = SubResource("CylinderMesh_8mcdc")
+
+[node name="@MeshInstance3D@80" type="MeshInstance3D" parent="." unique_id=639336519]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05, 3.2, 1.05)
+mesh = SubResource("CylinderMesh_07gsw")
+
+[node name="Deck" type="MeshInstance3D" parent="." unique_id=114183490]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.95, 0)
+mesh = SubResource("BoxMesh_6eeo3")
+
+[node name="Roof" type="MeshInstance3D" parent="." unique_id=96101852]
+transform = Transform3D(1, 0, 0, 0, 0.9999619, 0.008726535, 0, -0.008726535, 0.9999619, 0, 6.15, -0.82)
+mesh = SubResource("BoxMesh_cyihx")
+
+[node name="@MeshInstance3D@81" type="MeshInstance3D" parent="." unique_id=199166573]
+transform = Transform3D(1, 0, 0, 0, 0.9999619, -0.008726535, 0, 0.008726535, 0.9999619, 0, 6.15, 0.82)
+mesh = SubResource("BoxMesh_jotc1")
+
+[node name="BaseCollision" type="StaticBody3D" parent="." unique_id=1840002399]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15, 0)
+
+[node name="Shape" type="CollisionShape3D" parent="BaseCollision" unique_id=2127261698]
+shape = SubResource("BoxShape3D_1tqg2")

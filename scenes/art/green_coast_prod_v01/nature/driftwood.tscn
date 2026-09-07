@@ -1,0 +1,41 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/building_plaster.tres" id="1_whcxy"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4ttf6"]
+material = ExtResource("1_whcxy")
+top_radius = 0.16
+bottom_radius = 0.27
+height = 3.4
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tldhs"]
+material = ExtResource("1_whcxy")
+top_radius = 0.09
+bottom_radius = 0.18
+height = 1.4
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bgact"]
+material = ExtResource("1_whcxy")
+top_radius = 0.08
+bottom_radius = 0.16
+height = 1.05
+radial_segments = 7
+rings = 1
+
+[node name="Driftwood" type="Node3D" unique_id=1425715564]
+
+[node name="Main" type="MeshInstance3D" parent="." unique_id=547452937]
+transform = Transform3D(0.9996242, -0.027412133, 0, 0.027412133, 0.9996242, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("CylinderMesh_4ttf6")
+
+[node name="ForkA" type="MeshInstance3D" parent="." unique_id=210873918]
+transform = Transform3D(0.9999073, 0.013613147, 0, -0.013613147, 0.9999073, 0, 0, 0, 1, 0.85, 0.47, 0)
+mesh = SubResource("CylinderMesh_tldhs")
+
+[node name="ForkB" type="MeshInstance3D" parent="." unique_id=1488717524]
+transform = Transform3D(0.999921, -0.01256604, 0, 0.01256604, 0.999921, 0, 0, 0, 1, -0.55, 0.38, 0)
+mesh = SubResource("CylinderMesh_bgact")

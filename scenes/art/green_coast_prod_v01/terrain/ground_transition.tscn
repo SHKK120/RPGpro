@@ -1,0 +1,48 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/grass.tres" id="1_g17fi"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/rock_cliff.tres" id="2_4rq3h"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/soil_path.tres" id="3_yf77y"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_so5x4"]
+material = ExtResource("1_g17fi")
+size = Vector3(4, 0.14, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m7hkt"]
+material = ExtResource("2_4rq3h")
+size = Vector3(4, 0.36, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eg3fg"]
+size = Vector3(4, 0.5, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tqawr"]
+material = ExtResource("3_yf77y")
+size = Vector3(2.65, 0.018, 1.35)
+
+[sub_resource type="BoxMesh" id="BoxMesh_abvju"]
+material = ExtResource("3_yf77y")
+size = Vector3(1.75, 0.018, 1.05)
+
+[node name="GroundTransition" type="Node3D" unique_id=175602133]
+
+[node name="WalkableCap" type="MeshInstance3D" parent="." unique_id=1466918479]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07, 0)
+mesh = SubResource("BoxMesh_so5x4")
+
+[node name="StoneFoundation" type="MeshInstance3D" parent="." unique_id=1605817283]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.18, 0)
+mesh = SubResource("BoxMesh_m7hkt")
+
+[node name="SimpleCollision" type="StaticBody3D" parent="." unique_id=1916078458]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11, 0)
+
+[node name="Shape" type="CollisionShape3D" parent="SimpleCollision" unique_id=1158781868]
+shape = SubResource("BoxShape3D_eg3fg")
+
+[node name="SoilBlendA" type="MeshInstance3D" parent="." unique_id=77769429]
+transform = Transform3D(0.99999845, 0, 0.0017453283, 0, 1, 0, -0.0017453283, 0, 0.99999845, 0.55, 0.151, 0.18)
+mesh = SubResource("BoxMesh_tqawr")
+
+[node name="SoilBlendB" type="MeshInstance3D" parent="." unique_id=293436657]
+transform = Transform3D(0.99999845, 0, -0.0017453283, 0, 1, 0, 0.0017453283, 0, 0.99999845, -0.45, 0.153, 1.25)
+mesh = SubResource("BoxMesh_abvju")

@@ -1,0 +1,120 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/wood_dark.tres" id="1_cw6n8"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/wood.tres" id="2_t7c8o"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/rope.tres" id="3_v6hdc"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/metal.tres" id="4_2v6np"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2qjkq"]
+material = ExtResource("1_cw6n8")
+top_radius = 0.16
+bottom_radius = 0.24
+height = 2.2
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_fflm1"]
+material = ExtResource("1_cw6n8")
+top_radius = 0.16
+bottom_radius = 0.24
+height = 2.2
+radial_segments = 6
+rings = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_2ukdm"]
+material = ExtResource("2_t7c8o")
+size = Vector3(3.45, 0.18, 0.2)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3lwwx"]
+material = ExtResource("3_v6hdc")
+top_radius = 0.025
+bottom_radius = 0.025
+height = 0.9
+radial_segments = 5
+rings = 1
+
+[sub_resource type="PrismMesh" id="PrismMesh_akuwo"]
+material = ExtResource("4_2v6np")
+size = Vector3(0.22, 0.48, 0.12)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ujgve"]
+material = ExtResource("3_v6hdc")
+top_radius = 0.025
+bottom_radius = 0.025
+height = 0.9
+radial_segments = 5
+rings = 1
+
+[sub_resource type="PrismMesh" id="PrismMesh_fck5y"]
+material = ExtResource("4_2v6np")
+size = Vector3(0.22, 0.48, 0.12)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_t8heu"]
+material = ExtResource("3_v6hdc")
+top_radius = 0.025
+bottom_radius = 0.025
+height = 0.9
+radial_segments = 5
+rings = 1
+
+[sub_resource type="PrismMesh" id="PrismMesh_idaas"]
+material = ExtResource("4_2v6np")
+size = Vector3(0.22, 0.48, 0.12)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_cmu3r"]
+material = ExtResource("3_v6hdc")
+top_radius = 0.025
+bottom_radius = 0.025
+height = 0.9
+radial_segments = 5
+rings = 1
+
+[sub_resource type="PrismMesh" id="PrismMesh_sqxgt"]
+material = ExtResource("4_2v6np")
+size = Vector3(0.22, 0.48, 0.12)
+
+[node name="FishingRack" type="Node3D" unique_id=299999782]
+
+[node name="Post" type="MeshInstance3D" parent="." unique_id=47137777]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.1, 0)
+mesh = SubResource("CylinderMesh_2qjkq")
+
+[node name="@MeshInstance3D@74" type="MeshInstance3D" parent="." unique_id=876420780]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.1, 0)
+mesh = SubResource("CylinderMesh_fflm1")
+
+[node name="Crossbar" type="MeshInstance3D" parent="." unique_id=99828405]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05, 0)
+mesh = SubResource("BoxMesh_2ukdm")
+
+[node name="Rope0" type="MeshInstance3D" parent="." unique_id=1315750922]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 1.55, 0)
+mesh = SubResource("CylinderMesh_3lwwx")
+
+[node name="Fish0" type="MeshInstance3D" parent="." unique_id=1395086655]
+transform = Transform3D(0.9996242, 0, 0.027412133, 0, 1, 0, -0.027412133, 0, 0.9996242, -0.9, 1.02, 0)
+mesh = SubResource("PrismMesh_akuwo")
+
+[node name="Rope1" type="MeshInstance3D" parent="." unique_id=571172660]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 1.55, 0)
+mesh = SubResource("CylinderMesh_ujgve")
+
+[node name="Fish1" type="MeshInstance3D" parent="." unique_id=75283858]
+transform = Transform3D(0.9996242, 0, 0.027412133, 0, 1, 0, -0.027412133, 0, 0.9996242, -0.3, 1.02, 0)
+mesh = SubResource("PrismMesh_fck5y")
+
+[node name="Rope2" type="MeshInstance3D" parent="." unique_id=687788645]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 1.55, 0)
+mesh = SubResource("CylinderMesh_t8heu")
+
+[node name="Fish2" type="MeshInstance3D" parent="." unique_id=6993330]
+transform = Transform3D(0.9996242, 0, 0.027412133, 0, 1, 0, -0.027412133, 0, 0.9996242, 0.3, 1.02, 0)
+mesh = SubResource("PrismMesh_idaas")
+
+[node name="Rope3" type="MeshInstance3D" parent="." unique_id=1391570773]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 1.55, 0)
+mesh = SubResource("CylinderMesh_cmu3r")
+
+[node name="Fish3" type="MeshInstance3D" parent="." unique_id=1109104122]
+transform = Transform3D(0.9996242, 0, 0.027412133, 0, 1, 0, -0.027412133, 0, 0.9996242, 0.9, 1.02, 0)
+mesh = SubResource("PrismMesh_sqxgt")

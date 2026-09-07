@@ -1,0 +1,13 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/sand.tres" id="1_wh7wc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_cacw2"]
+material = ExtResource("1_wh7wc")
+size = Vector3(4, 0.12, 4)
+
+[node name="SandTile" type="Node3D" unique_id=1191232474]
+
+[node name="Sand" type="MeshInstance3D" parent="." unique_id=825208147]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+mesh = SubResource("BoxMesh_cacw2")

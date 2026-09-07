@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[sub_resource type="Shader" id="Shader_bgrl3"]
+code = "
+shader_type spatial;
+render_mode diffuse_burley;
+
+void vertex() {
+	float broad = sin((VERTEX.x + VERTEX.z) * 0.28 + TIME * 0.58) * 0.030;
+	float cross = sin((VERTEX.x - VERTEX.z) * 0.47 - TIME * 0.34) * 0.014;
+	VERTEX.y += broad + cross;
+}
+
+void fragment() {
+	float band = 0.5 + 0.5 * sin((UV.x * 18.0 + UV.y * 11.0) + TIME * 0.22);
+	vec3 deep = vec3(0.08, 0.39, 0.55);
+	vec3 light_coast = vec3(0.16, 0.58, 0.68);
+	ALBEDO = mix(deep, light_coast, 0.34 + band * 0.10);
+	ROUGHNESS = 0.38;
+}
+"
+
+[resource]
+resource_name = "prod_shallow_water"
+render_priority = 0
+shader = SubResource("Shader_bgrl3")

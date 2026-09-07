@@ -1,0 +1,31 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/grass.tres" id="1_fb2he"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/rock_cliff.tres" id="2_iv3de"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_rq537"]
+material = ExtResource("1_fb2he")
+size = Vector3(8, 0.14, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yabpf"]
+material = ExtResource("2_iv3de")
+size = Vector3(8, 0.36, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m1cm2"]
+size = Vector3(8, 0.5, 8)
+
+[node name="GroundLarge" type="Node3D" unique_id=466275216]
+
+[node name="WalkableCap" type="MeshInstance3D" parent="." unique_id=475555464]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07, 0)
+mesh = SubResource("BoxMesh_rq537")
+
+[node name="StoneFoundation" type="MeshInstance3D" parent="." unique_id=1968991622]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.18, 0)
+mesh = SubResource("BoxMesh_yabpf")
+
+[node name="SimpleCollision" type="StaticBody3D" parent="." unique_id=1177411029]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11, 0)
+
+[node name="Shape" type="CollisionShape3D" parent="SimpleCollision" unique_id=2032366283]
+shape = SubResource("BoxShape3D_m1cm2")

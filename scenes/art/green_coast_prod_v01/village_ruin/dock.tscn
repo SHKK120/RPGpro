@@ -1,0 +1,115 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/wood.tres" id="1_l1f7e"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/wood_dark.tres" id="2_o8d3t"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_k0cac"]
+material = ExtResource("1_l1f7e")
+size = Vector3(0.5, 0.18, 4.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3bw2o"]
+material = ExtResource("1_l1f7e")
+size = Vector3(0.5, 0.18, 4.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vmcrl"]
+material = ExtResource("1_l1f7e")
+size = Vector3(0.5, 0.18, 4.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ughcc"]
+material = ExtResource("1_l1f7e")
+size = Vector3(0.5, 0.18, 4.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xxhkn"]
+material = ExtResource("1_l1f7e")
+size = Vector3(0.5, 0.18, 4.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i6gjf"]
+material = ExtResource("1_l1f7e")
+size = Vector3(0.5, 0.18, 4.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i00mr"]
+material = ExtResource("1_l1f7e")
+size = Vector3(0.5, 0.18, 4.2)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3dlqn"]
+material = ExtResource("2_o8d3t")
+top_radius = 0.16
+bottom_radius = 0.24
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nk032"]
+material = ExtResource("2_o8d3t")
+top_radius = 0.16
+bottom_radius = 0.24
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8j7yw"]
+material = ExtResource("2_o8d3t")
+top_radius = 0.16
+bottom_radius = 0.24
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ai5j8"]
+material = ExtResource("2_o8d3t")
+top_radius = 0.16
+bottom_radius = 0.24
+radial_segments = 7
+rings = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prabl"]
+size = Vector3(4.2, 0.22, 4.2)
+
+[node name="Dock" type="Node3D" unique_id=88621197]
+
+[node name="Plank0" type="MeshInstance3D" parent="." unique_id=1533099800]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, 0.34, 0)
+mesh = SubResource("BoxMesh_k0cac")
+
+[node name="Plank1" type="MeshInstance3D" parent="." unique_id=147286126]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.34, 0)
+mesh = SubResource("BoxMesh_3bw2o")
+
+[node name="Plank2" type="MeshInstance3D" parent="." unique_id=612508901]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0.34, 0)
+mesh = SubResource("BoxMesh_vmcrl")
+
+[node name="Plank3" type="MeshInstance3D" parent="." unique_id=2088591971]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.220446e-16, 0.34, 0)
+mesh = SubResource("BoxMesh_ughcc")
+
+[node name="Plank4" type="MeshInstance3D" parent="." unique_id=1497771021]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.34, 0)
+mesh = SubResource("BoxMesh_xxhkn")
+
+[node name="Plank5" type="MeshInstance3D" parent="." unique_id=1622682550]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.34, 0)
+mesh = SubResource("BoxMesh_i6gjf")
+
+[node name="Plank6" type="MeshInstance3D" parent="." unique_id=1459785328]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 0.34, 0)
+mesh = SubResource("BoxMesh_i00mr")
+
+[node name="Post" type="MeshInstance3D" parent="." unique_id=1224630882]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.95, 0.18, -1.75)
+mesh = SubResource("CylinderMesh_3dlqn")
+
+[node name="@MeshInstance3D@75" type="MeshInstance3D" parent="." unique_id=1323230085]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.95, 0.18, 1.75)
+mesh = SubResource("CylinderMesh_nk032")
+
+[node name="@MeshInstance3D@76" type="MeshInstance3D" parent="." unique_id=636878751]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95, 0.18, -1.75)
+mesh = SubResource("CylinderMesh_8j7yw")
+
+[node name="@MeshInstance3D@77" type="MeshInstance3D" parent="." unique_id=1687182090]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95, 0.18, 1.75)
+mesh = SubResource("CylinderMesh_ai5j8")
+
+[node name="DeckCollision" type="StaticBody3D" parent="." unique_id=1281543739]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34, 0)
+
+[node name="Shape" type="CollisionShape3D" parent="DeckCollision" unique_id=296766275]
+shape = SubResource("BoxShape3D_prabl")

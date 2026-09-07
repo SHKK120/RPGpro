@@ -1,0 +1,7 @@
+interface:
+  display_name: "RPGpro Scenario Production"
+  short_description: "Direct consistent Scenario-to-Godot 2.5D asset production"
+  default_prompt: "Use $rpgpro-scenario-production to prepare or run an approved RPGpro environment asset through canonical reference reuse, Scenario consistency and quality gates, then validate it in Godot without changing gameplay geometry."
+
+policy:
+  allow_implicit_invocation: true

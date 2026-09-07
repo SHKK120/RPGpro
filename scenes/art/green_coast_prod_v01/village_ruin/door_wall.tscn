@@ -1,0 +1,119 @@
+[gd_scene format=4]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/rock_sunlit.tres" id="1_7vwo5"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/wood_dark.tres" id="2_aw8kc"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/wood.tres" id="3_tcoqf"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/metal.tres" id="4_r868w"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_sran6"]
+material = ExtResource("1_7vwo5")
+size = Vector3(0.82, 2.42, 0.34)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_fyc5r"]
+_surfaces = [{
+"aabb": AABB(-0.1874, -1.29, -0.23, 0.34162, 2.61, 0.468),
+"format": 34359738375,
+"material": ExtResource("2_aw8kc"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("KVwPvrgepb8fhWu+KVwPPrgepb8fhWs+KVwPPrgepb8fhWu+KVwPvrgepb8fhWu+KVwPvrgepb8fhWs+KVwPPrgepb8fhWs+yeU/vrgepT8+Cle+0uP3PcL1qD8fhWu+2esdPrgepT9GtnM+yeU/vrgepT8+Cle+2esdPrgepT9GtnM+SREZvjMzoz9CYGU+KVwPvrgepb8fhWu+KVwPPrgepb8fhWu+0uP3PcL1qD8fhWu+KVwPvrgepb8fhWu+0uP3PcL1qD8fhWu+yeU/vrgepT8+Cle+KVwPPrgepb8fhWu+KVwPPrgepb8fhWs+2esdPrgepT9GtnM+KVwPPrgepb8fhWu+2esdPrgepT9GtnM+0uP3PcL1qD8fhWu+KVwPPrgepb8fhWs+KVwPvrgepb8fhWs+SREZvjMzoz9CYGU+KVwPPrgepb8fhWs+SREZvjMzoz9CYGU+2esdPrgepT9GtnM+KVwPvrgepb8fhWs+KVwPvrgepb8fhWu+yeU/vrgepT8+Cle+KVwPvrgepb8fhWs+yeU/vrgepT8+Cle+SREZvjMzoz9CYGU+/38AAAAA/7//fwAAAAD/v/9/AAAAAP+//38AAAAA/7//fwAAAAD/v/9/AAAAAP+/zXUF7lkTp7rNdQXuWROnus11Be5ZE6e6/Hln9Q4L6Lz8eWf1DgvovPx5Z/UOC+i8//////9/AID//////38AgP//////fwCAyAAt+OB37IPIAC344Hfsg8gALfjgd+yDS/9Lf/5/pb9L/0t//n+lv0v/S3/+f6W/Iv85iWaIIsAi/zmJZogiwCL/OYlmiCLA/39LgP9/JYD/f0uA/38lgP9/S4D/fyWAY3qmf7WFzoJjeqZ/tYXOgmN6pn+1hc6CTwKwffR/JsFPArB99H8mwU8CsH30fybBpgqWfzuKwb+mCpZ/O4rBv6YKln87isG/")
+}]
+
+[sub_resource type="BoxMesh" id="BoxMesh_iack2"]
+material = ExtResource("1_7vwo5")
+size = Vector3(0.82, 2.42, 0.34)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_l2ahf"]
+_surfaces = [{
+"aabb": AABB(-0.14, -1.29, -0.23, 0.29896, 2.61, 0.468),
+"format": 34359738375,
+"material": ExtResource("2_aw8kc"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("KVwPvrgepb8fhWu+KVwPPrgepb8fhWs+KVwPPrgepb8fhWu+KVwPvrgepb8fhWu+KVwPvrgepb8fhWs+KVwPPrgepb8fhWs+EqW9vbgepT8+Cle+acYiPsL1qD8fhWu+ecwAPrgepT9GtnM+EqW9vbgepT8+Cle+ecwAPrgepT9GtnM+CacFvjMzoz9CYGU+KVwPvrgepb8fhWu+KVwPPrgepb8fhWu+acYiPsL1qD8fhWu+KVwPvrgepb8fhWu+acYiPsL1qD8fhWu+EqW9vbgepT8+Cle+KVwPPrgepb8fhWu+KVwPPrgepb8fhWs+ecwAPrgepT9GtnM+KVwPPrgepb8fhWu+ecwAPrgepT9GtnM+acYiPsL1qD8fhWu+KVwPPrgepb8fhWs+KVwPvrgepb8fhWs+CacFvjMzoz9CYGU+KVwPPrgepb8fhWs+CacFvjMzoz9CYGU+ecwAPrgepT9GtnM+KVwPvrgepb8fhWs+KVwPvrgepb8fhWu+EqW9vbgepT8+Cle+KVwPvrgepb8fhWs+EqW9vbgepT8+Cle+CacFvjMzoz9CYGU+/38AAAAA/7//fwAAAAD/v/9/AAAAAP+//38AAAAA/7//fwAAAAD/v/9/AAAAAP+/cnNT7UgUmrlyc1PtSBSauXJzU+1IFJq573h99QELbLzveH31AQtsvO94ffUBC2y8//////9/AID//////38AgP//////fwCAFQGH9iZ2woQVAYf2JnbChBUBh/YmdsKES/+zgP5/WcBL/7OA/n9ZwEv/s4D+f1nAxPYif6l3Rr/E9iJ/qXdGv8T2In+pd0a//39LgP9/JYD/f0uA/38lgP9/S4D/fyWAaXmWf6eGTINpeZZ/p4ZMg2l5ln+nhkyDTwJOgvR/175PAk6C9H/Xvk8CToL0f9e+aAClitN1Wb9oAKWK03VZv2gApYrTdVm/")
+}]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6n66f"]
+material = ExtResource("3_tcoqf")
+size = Vector3(1.34, 2.1, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jrc46"]
+material = ExtResource("2_aw8kc")
+size = Vector3(0.045, 1.78, 0.06)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2f57r"]
+material = ExtResource("2_aw8kc")
+size = Vector3(0.045, 1.78, 0.06)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n252e"]
+material = ExtResource("2_aw8kc")
+size = Vector3(0.045, 1.78, 0.06)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kiqxe"]
+material = ExtResource("2_aw8kc")
+size = Vector3(1.92, 0.32, 0.48)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vylal"]
+material = ExtResource("3_tcoqf")
+size = Vector3(4.18, 0.34, 0.46)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dq2qo"]
+material = ExtResource("4_r868w")
+size = Vector3(0.11, 0.11, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lwxq3"]
+size = Vector3(4.1, 2.7, 0.54)
+
+[node name="DoorWall4m" type="Node3D" unique_id=1172042546]
+
+[node name="PlasterPier" type="MeshInstance3D" parent="." unique_id=883299405]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58, 1.32, 0)
+mesh = SubResource("BoxMesh_sran6")
+
+[node name="DoorFramePost" type="MeshInstance3D" parent="." unique_id=1545302530]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 1.3, -0.05)
+mesh = SubResource("ArrayMesh_fyc5r")
+
+[node name="@MeshInstance3D@39" type="MeshInstance3D" parent="." unique_id=721057510]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58, 1.32, 0)
+mesh = SubResource("BoxMesh_iack2")
+
+[node name="@MeshInstance3D@40" type="MeshInstance3D" parent="." unique_id=2062664230]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 1.3, -0.05)
+mesh = SubResource("ArrayMesh_l2ahf")
+
+[node name="DoorSlab" type="MeshInstance3D" parent="." unique_id=1393562522]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0.04)
+mesh = SubResource("BoxMesh_6n66f")
+
+[node name="DoorPlankShadow" type="MeshInstance3D" parent="." unique_id=1445423169]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42, 1.05, -0.1)
+mesh = SubResource("BoxMesh_jrc46")
+
+[node name="@MeshInstance3D@41" type="MeshInstance3D" parent="." unique_id=1503951554]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, -0.1)
+mesh = SubResource("BoxMesh_2f57r")
+
+[node name="@MeshInstance3D@42" type="MeshInstance3D" parent="." unique_id=1753964201]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42, 1.05, -0.1)
+mesh = SubResource("BoxMesh_n252e")
+
+[node name="DoorLintel" type="MeshInstance3D" parent="." unique_id=969509871]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, -0.05)
+mesh = SubResource("BoxMesh_kiqxe")
+
+[node name="TopBeam" type="MeshInstance3D" parent="." unique_id=2036881745]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.58, -0.05)
+mesh = SubResource("BoxMesh_vylal")
+
+[node name="MetalHandle" type="MeshInstance3D" parent="." unique_id=227595760]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42, 1.05, -0.18)
+mesh = SubResource("BoxMesh_dq2qo")
+
+[node name="WallCollision" type="StaticBody3D" parent="." unique_id=586583025]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
+
+[node name="Shape" type="CollisionShape3D" parent="WallCollision" unique_id=1132869854]
+shape = SubResource("BoxShape3D_lwxq3")

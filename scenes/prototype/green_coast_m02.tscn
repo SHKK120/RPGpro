@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/prototype/m03_player.gd" id="1_player"]
 [ext_resource type="NavigationMesh" path="res://scenes/prototype/m02_navigation_mesh.tres" id="2_navmesh"]
 [ext_resource type="Script" path="res://scripts/prototype/p1_camera_follow.gd" id="3_camera"]
-[ext_resource type="Script" path="res://scripts/prototype/macro_01_game.gd" id="4_m02"]
+[ext_resource type="Script" path="res://scripts/prototype/master_03_green_coast.gd" id="4_m02"]
 [ext_resource type="Material" path="res://assets/art/green_coast_v01/materials/ground.tres" id="5_art_ground"]
 [ext_resource type="Material" path="res://assets/art/green_coast_v01/materials/water.tres" id="6_art_water"]
 
@@ -180,9 +180,10 @@ visible = false
 mesh = SubResource("Mesh_destination")
 
 [node name="Camera" type="Camera3D" parent="."]
-position = Vector3(0, 9.5, 15.5)
-rotation_degrees = Vector3(-34.5, 0, 0)
+position = Vector3(0, 5.35, 10.8)
+rotation_degrees = Vector3(-27, 0, 0)
 current = true
+fov = 52.0
 script = ExtResource("3_camera")
 target_path = NodePath("../Player")
 

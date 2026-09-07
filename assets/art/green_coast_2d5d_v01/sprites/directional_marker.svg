@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="256" viewBox="0 0 192 256">
+  <defs>
+    <linearGradient id="cloak" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2f78a8"/>
+      <stop offset="1" stop-color="#17496c"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="96" cy="238" rx="54" ry="12" fill="#182b32" fill-opacity="0.28"/>
+  <path d="M96 22 126 68 116 92 150 198 96 232 42 198 76 92 66 68Z" fill="url(#cloak)" stroke="#16384d" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M96 34 111 65 96 84 81 65Z" fill="#f5d27c" stroke="#6e4a24" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M96 96 122 144 103 136 103 188 89 188 89 136 70 144Z" fill="#f7ead0" stroke="#173b50" stroke-width="5" stroke-linejoin="round"/>
+</svg>

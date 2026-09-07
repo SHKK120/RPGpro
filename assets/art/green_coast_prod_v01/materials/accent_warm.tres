@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "prod_accent_warm"
+albedo_color = Color(0.6509804, 0.30980393, 0.19215687, 1)
+roughness = 0.95

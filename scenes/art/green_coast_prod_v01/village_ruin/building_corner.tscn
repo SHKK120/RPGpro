@@ -1,0 +1,22 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/wood_dark.tres" id="1_7wn77"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/stone.tres" id="2_1xndc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_o4tp8"]
+material = ExtResource("1_7wn77")
+size = Vector3(0.42, 3.1, 0.42)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3nx84"]
+material = ExtResource("2_1xndc")
+size = Vector3(0.62, 0.5, 0.62)
+
+[node name="BuildingCorner" type="Node3D" unique_id=1001348705]
+
+[node name="Post" type="MeshInstance3D" parent="." unique_id=2098065354]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, 0)
+mesh = SubResource("BoxMesh_o4tp8")
+
+[node name="StoneFoot" type="MeshInstance3D" parent="." unique_id=661352285]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("BoxMesh_3nx84")

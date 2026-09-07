@@ -1,0 +1,70 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/grass_foliage_light.tres" id="1_tf608"]
+[ext_resource type="Material" path="res://assets/art/green_coast_prod_v01/materials/grass_foliage_dark.tres" id="2_hjjgx"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_7mbmr"]
+material = ExtResource("1_tf608")
+size = Vector3(0.1, 0.62, 0.16)
+
+[sub_resource type="PrismMesh" id="PrismMesh_3gtaa"]
+material = ExtResource("2_hjjgx")
+size = Vector3(0.1, 0.86, 0.16)
+
+[sub_resource type="PrismMesh" id="PrismMesh_5ohvr"]
+material = ExtResource("1_tf608")
+size = Vector3(0.1, 1.1, 0.16)
+
+[sub_resource type="PrismMesh" id="PrismMesh_2ot1j"]
+material = ExtResource("2_hjjgx")
+size = Vector3(0.1, 0.62, 0.16)
+
+[sub_resource type="PrismMesh" id="PrismMesh_qjv4s"]
+material = ExtResource("1_tf608")
+size = Vector3(0.1, 0.86, 0.16)
+
+[sub_resource type="PrismMesh" id="PrismMesh_tf5in"]
+material = ExtResource("2_hjjgx")
+size = Vector3(0.1, 1.1, 0.16)
+
+[sub_resource type="PrismMesh" id="PrismMesh_flo1e"]
+material = ExtResource("1_tf608")
+size = Vector3(0.1, 0.62, 0.16)
+
+[sub_resource type="PrismMesh" id="PrismMesh_10mhm"]
+material = ExtResource("2_hjjgx")
+size = Vector3(0.1, 0.86, 0.16)
+
+[node name="CoastalPlant" type="Node3D" unique_id=1721674450]
+
+[node name="Blade0" type="MeshInstance3D" parent="." unique_id=480016585]
+transform = Transform3D(0.999997, 0.0024434587, 0, -0.0024434587, 0.999997, 0, 0, 0, 1, -0.55, 0.31, 0)
+mesh = SubResource("PrismMesh_7mbmr")
+
+[node name="Blade1" type="MeshInstance3D" parent="." unique_id=141477437]
+transform = Transform3D(0.99997634, 0.0018325543, 0.006632203, -0.0018325946, 0.99999833, 0, -0.0066321916, -1.2154139e-05, 0.999978, -0.39, 0.43, 0.21816626)
+mesh = SubResource("PrismMesh_3gtaa")
+
+[node name="Blade2" type="MeshInstance3D" parent="." unique_id=184687119]
+transform = Transform3D(0.99991125, 0.0012216227, 0.013264113, -0.0012217301, 0.9999992, 0, -0.013264103, -1.6205167e-05, 0.999912, -0.23, 0.55, -0.05621904)
+mesh = SubResource("PrismMesh_5ohvr")
+
+[node name="Blade3" type="MeshInstance3D" parent="." unique_id=1140030098]
+transform = Transform3D(0.9998019, 0.0006107443, 0.01989544, -0.0006108652, 0.9999998, 0, -0.019895436, -1.2153431e-05, 0.99980205, -0.07, 0.31, -0.20367923)
+mesh = SubResource("PrismMesh_2ot1j")
+
+[node name="Blade4" type="MeshInstance3D" parent="." unique_id=335906280]
+transform = Transform3D(0.99964815, 0, 0.026525892, 0, 1, 0, -0.026525892, 0, 0.99964815, 0.09, 0.43, 0.10870494)
+mesh = SubResource("PrismMesh_qjv4s")
+
+[node name="Blade5" type="MeshInstance3D" parent="." unique_id=1806652572]
+transform = Transform3D(0.99945, -0.0006105293, 0.03315518, 0.0006108652, 0.9999998, 0, -0.033155173, 2.0253345e-05, 0.9994502, 0.25, 0.55, 0.17566717)
+mesh = SubResource("PrismMesh_tf5in")
+
+[node name="Blade6" type="MeshInstance3D" parent="." unique_id=991099483]
+transform = Transform3D(0.99920756, -0.001220763, 0.039783005, 0.0012217301, 0.9999992, 0, -0.039782975, 4.8604095e-05, 0.99920833, 0.41, 0.31, -0.15397243)
+mesh = SubResource("PrismMesh_flo1e")
+
+[node name="Blade7" type="MeshInstance3D" parent="." unique_id=1088541234]
+transform = Transform3D(0.99892086, -0.0018306201, 0.046409085, 0.0018325946, 0.99999833, 0, -0.046409007, 8.504904e-05, 0.9989225, 0.57, 0.43, -0.13599016)
+mesh = SubResource("PrismMesh_10mhm")

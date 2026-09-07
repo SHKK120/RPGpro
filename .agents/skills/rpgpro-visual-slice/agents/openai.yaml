@@ -1,4 +1,4 @@
 interface:
   display_name: "RPGpro Visual Slice"
-  short_description: "RPGpro 입체 픽셀 아트패스와 화면 검증"
-  default_prompt: "Use $rpgpro-visual-slice for the approved RPGpro visual slice without changing unresolved game design."
+  short_description: "RPGpro 기준 화면 비교와 3D·2.5D 조립 판정"
+  default_prompt: "Use $rpgpro-visual-slice to compare an RPGpro 3D gameplay plus 2.5D visual slice against the latest approved reference frames."
